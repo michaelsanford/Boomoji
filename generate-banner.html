@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Generate Social Banner</title>
+<style>
+  body { margin: 0; background: #111; display: flex; flex-direction: column;
+         align-items: center; padding: 24px; gap: 16px; font-family: sans-serif; color: #fff; }
+  canvas { border-radius: 12px; max-width: 100%; box-shadow: 0 8px 40px rgba(0,0,0,.5); }
+  button { padding: 10px 32px; background: #FF6B9D; color: #fff; border: none;
+           border-radius: 8px; font-size: 16px; cursor: pointer; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<canvas id="c" width="1280" height="640"></canvas>
+<button onclick="download()">Download social-banner.png</button>
+<script>
+/* wait for font before drawing */
+document.fonts.ready.then(draw);
+
+function draw() {
+  const c = document.getElementById('c');
+  const ctx = c.getContext('2d');
+  const W = 1280, H = 640, CX = W / 2, CY = H / 2;
+
+  /* ── background gradient ──────────────────────────────────────────────── */
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0,    '#FF6B9D');
+  bg.addColorStop(0.38, '#C77DFF');
+  bg.addColorStop(0.72, '#44b8e0');
+  bg.addColorStop(1,    '#4ecdc4');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  /* ── subtle dot grid ──────────────────────────────────────────────────── */
+  ctx.fillStyle = 'rgba(255,255,255,0.07)';
+  for (let x = 32; x < W; x += 52)
+    for (let y = 32; y < H; y += 52) {
+      ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI * 2); ctx.fill();
+    }
+
+  /* ── decorative emojis — edges only, clear centre ─────────────────────── */
+  const deco = [
+    /* left edge */
+    { e: '🐶', x:  55, y:  90, s: 92, r: -0.22, a: 0.38 },
+    { e: '🍭', x:  45, y: 310, s: 80, r:  0.10, a: 0.30 },
+    { e: '🐸', x:  80, y: 520, s: 88, r: -0.12, a: 0.34 },
+    /* left-centre top/bottom */
+    { e: '🦋', x: 230, y:  38, s: 72, r:  0.14, a: 0.28 },
+    { e: '🚀', x: 185, y: 590, s: 70, r: -0.28, a: 0.26 },
+    { e: '🌺', x: 380, y:  28, s: 62, r: -0.08, a: 0.22 },
+    { e: '🍦', x: 370, y: 602, s: 64, r:  0.18, a: 0.22 },
+    /* right-centre top/bottom */
+    { e: '💫', x: 900, y:  32, s: 62, r:  0.10, a: 0.22 },
+    { e: '🍉', x: 880, y: 600, s: 64, r: -0.14, a: 0.22 },
+    { e: '🎊', x:1050, y:  44, s: 72, r: -0.16, a: 0.28 },
+    { e: '🐠', x:1070, y: 590, s: 68, r:  0.20, a: 0.26 },
+    /* right edge */
+    { e: '🌟', x:1210, y:  95, s: 90, r:  0.18, a: 0.38 },
+    { e: '🎉', x:1220, y: 320, s: 82, r: -0.10, a: 0.32 },
+    { e: '🐱', x:1185, y: 522, s: 86, r:  0.08, a: 0.34 },
+  ];
+
+  for (const { e, x, y, s, r, a } of deco) {
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.translate(x, y);
+    ctx.rotate(r);
+    ctx.font = `${s}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(e, 0, 0);
+    ctx.restore();
+  }
+
+  /* ── frosted pill behind title (optional polish) ──────────────────────── */
+  ctx.save();
+  ctx.fillStyle = 'rgba(255,255,255,0.12)';
+  ctx.beginPath();
+  ctx.roundRect(CX - 420, CY - 148, 840, 310, 48);
+  ctx.fill();
+  ctx.restore();
+
+  /* ── title ────────────────────────────────────────────────────────────── */
+  ctx.save();
+  ctx.shadowColor   = 'rgba(0,0,0,0.22)';
+  ctx.shadowBlur    = 28;
+  ctx.shadowOffsetY = 8;
+  ctx.font          = '152px "Fredoka One", "Arial Rounded MT Bold", sans-serif';
+  ctx.textAlign     = 'center';
+  ctx.textBaseline  = 'middle';
+  ctx.fillStyle     = '#ffffff';
+  ctx.fillText('Boomoji!', CX, CY - 48);
+  ctx.restore();
+
+  /* ── subtitle ─────────────────────────────────────────────────────────── */
+  ctx.font        = '46px "Fredoka One", "Arial Rounded MT Bold", sans-serif';
+  ctx.textAlign   = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle   = 'rgba(255,255,255,0.85)';
+  ctx.fillText('Tap · Pop · Discover', CX, CY + 62);
+
+  /* ── centred emoji row ────────────────────────────────────────────────── */
+  const row = ['🎈', '✨', '🦄', '🌈', '🎉', '💫'];
+  const gap  = 86;
+  const rowX = CX - (row.length - 1) * gap / 2;
+  ctx.font = '52px serif';
+  ctx.textAlign   = 'center';
+  ctx.textBaseline = 'middle';
+  row.forEach((e, i) => ctx.fillText(e, rowX + i * gap, CY + 128));
+}
+
+function download() {
+  const a = document.createElement('a');
+  a.download = 'social-banner.png';
+  a.href = document.getElementById('c').toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>

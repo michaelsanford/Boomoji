@@ -1,0 +1,301 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Fredoka One', 'Arial Rounded MT Bold', system-ui, sans-serif;
+}
+
+canvas { display: block; }
+
+/* ─── SCREENS ─────────────────────────────────────────────────────────────── */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.screen.active { display: flex; }
+
+/* ─── MENU ────────────────────────────────────────────────────────────────── */
+
+#screen-menu {
+  background: linear-gradient(135deg, #ff6b9d, #c77dff, #4ecdc4, #ffd93d);
+  background-size: 400% 400%;
+  animation: menuGradient 10s ease infinite;
+}
+
+@keyframes menuGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating decorative emojis */
+.menu-floaties {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floatie {
+  position: absolute;
+  bottom: -60px;
+  left: var(--x);
+  font-size: 1.8rem;
+  animation: floatUp var(--d) linear var(--delay) infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+  8%   { opacity: 0.35; }
+  92%  { opacity: 0.35; }
+  100% { transform: translateY(calc(-100vh - 70px)) rotate(360deg); opacity: 0; }
+}
+
+/* Menu content */
+.menu-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.menu-title {
+  font-size: clamp(52px, 14vw, 88px);
+  color: #fff;
+  text-shadow: 0 5px 0 rgba(0,0,0,.15), 0 10px 30px rgba(0,0,0,.2);
+  letter-spacing: 2px;
+  animation: titleBounce 2.5s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes titleBounce {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%       { transform: translateY(-10px) rotate(1deg); }
+}
+
+.menu-subtitle {
+  font-size: clamp(16px, 4.5vw, 22px);
+  color: rgba(255,255,255,.85);
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+
+.menu-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 18px 22px;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  box-shadow: 0 8px 0 rgba(0,0,0,.18), 0 14px 30px rgba(0,0,0,.2);
+  transition: transform .12s ease, box-shadow .12s ease;
+  -webkit-appearance: none;
+}
+
+.game-card:active {
+  transform: translateY(5px);
+  box-shadow: 0 3px 0 rgba(0,0,0,.18), 0 6px 15px rgba(0,0,0,.2);
+}
+
+.pop-card    { background: linear-gradient(135deg, #ff6b9d 0%, #ff8e53 100%); }
+.reveal-card { background: linear-gradient(135deg, #4ecdc4 0%, #44b8e0 100%); }
+
+.card-emoji {
+  font-size: 52px;
+  line-height: 1;
+  flex-shrink: 0;
+  animation: cardWiggle 3s ease-in-out infinite;
+}
+
+.reveal-card .card-emoji { animation-delay: -1.5s; }
+
+@keyframes cardWiggle {
+  0%, 100% { transform: rotate(-6deg) scale(1); }
+  30%       { transform: rotate(6deg) scale(1.12); }
+  70%       { transform: rotate(-4deg) scale(.96); }
+}
+
+.card-text { display: flex; flex-direction: column; gap: 3px; }
+
+.card-title {
+  font-size: clamp(26px, 7vw, 38px);
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,.15);
+  line-height: 1;
+}
+
+.card-desc {
+  font-size: clamp(13px, 3.5vw, 17px);
+  color: rgba(255,255,255,.82);
+}
+
+/* ─── HUD ─────────────────────────────────────────────────────────────────── */
+
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) 14px max(14px, env(safe-area-inset-left));
+  pointer-events: none;
+}
+
+.back-btn {
+  font-size: 28px;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  transition: transform .1s ease;
+  flex-shrink: 0;
+}
+
+.back-btn:active { transform: scale(.88); }
+
+.round-badge {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: max(14px, env(safe-area-inset-top));
+  background: rgba(255,255,255,.92);
+  color: #b36bff;
+  padding: 7px 20px;
+  border-radius: 22px;
+  font-size: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.15);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ─── POP GAME ────────────────────────────────────────────────────────────── */
+
+#screen-pop {
+  background: linear-gradient(150deg, #f0e6ff 0%, #d8eeff 100%);
+}
+
+#canvas-pop {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+/* Round complete overlay */
+.round-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+  background: rgba(255,255,255,0);
+}
+
+.round-overlay.visible {
+  opacity: 1;
+  background: rgba(255,255,255,.35);
+}
+
+.overlay-inner {
+  text-align: center;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), opacity .25s ease;
+}
+
+.round-overlay.visible .overlay-inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.overlay-emoji {
+  font-size: 80px;
+  line-height: 1;
+  display: block;
+}
+
+.overlay-msg {
+  font-size: clamp(42px, 12vw, 64px);
+  color: #b36bff;
+  text-shadow: 0 4px 0 rgba(0,0,0,.1);
+  margin-top: 8px;
+}
+
+.overlay-sub {
+  font-size: clamp(18px, 5vw, 24px);
+  color: rgba(80,40,120,.6);
+  margin-top: 6px;
+}
+
+/* ─── REVEAL GAME ─────────────────────────────────────────────────────────── */
+
+#screen-reveal {
+  background: radial-gradient(ellipse at 50% 60%, #1e0a40 0%, #080015 100%);
+}
+
+#canvas-reveal {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+.reveal-hint {
+  position: fixed;
+  bottom: max(36px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.5);
+  font-size: 20px;
+  letter-spacing: 1px;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 1s ease;
+  white-space: nowrap;
+}
+
+.reveal-hint.gone { opacity: 0; }

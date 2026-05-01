@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#FF6B9D">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Boomoji</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ═══════════════ MENU ═══════════════ -->
+  <div id="screen-menu" class="screen active">
+    <div class="menu-floaties">
+      <span class="floatie" style="--x:5%;--d:8s;--delay:0s">🌟</span>
+      <span class="floatie" style="--x:18%;--d:6s;--delay:1.5s">🎈</span>
+      <span class="floatie" style="--x:32%;--d:9s;--delay:3s">💫</span>
+      <span class="floatie" style="--x:48%;--d:7s;--delay:0.8s">🦄</span>
+      <span class="floatie" style="--x:62%;--d:10s;--delay:2.2s">🌈</span>
+      <span class="floatie" style="--x:75%;--d:6.5s;--delay:4s">⭐</span>
+      <span class="floatie" style="--x:88%;--d:8.5s;--delay:1s">🎉</span>
+      <span class="floatie" style="--x:12%;--d:11s;--delay:5s">🍭</span>
+      <span class="floatie" style="--x:55%;--d:7.5s;--delay:3.5s">🐶</span>
+      <span class="floatie" style="--x:82%;--d:9.5s;--delay:0.3s">🦋</span>
+    </div>
+    <div class="menu-content">
+      <h1 class="menu-title">Boomoji!</h1>
+      <p class="menu-subtitle">Tap · Play · Discover</p>
+      <div class="menu-cards">
+        <button class="game-card pop-card" id="btn-pop">
+          <div class="card-emoji">🎈</div>
+          <div class="card-text">
+            <div class="card-title">Pop!</div>
+            <div class="card-desc">Tap the bouncing emojis!</div>
+          </div>
+        </button>
+        <button class="game-card reveal-card" id="btn-reveal">
+          <div class="card-emoji">✨</div>
+          <div class="card-text">
+            <div class="card-title">Reveal!</div>
+            <div class="card-desc">Touch to discover emojis!</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ POP GAME ═══════════════ -->
+  <div id="screen-pop" class="screen">
+    <canvas id="canvas-pop"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="pop-back">🏠</button>
+      <div class="round-badge" id="pop-round-badge">Round 1</div>
+    </div>
+    <div class="round-overlay" id="pop-overlay">
+      <div class="overlay-inner" id="overlay-inner">
+        <div class="overlay-emoji" id="overlay-emoji">🎉</div>
+        <div class="overlay-msg" id="overlay-msg">Amazing!</div>
+        <div class="overlay-sub" id="overlay-sub">Get ready for Round 2!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ REVEAL GAME ═══════════════ -->
+  <div id="screen-reveal" class="screen">
+    <canvas id="canvas-reveal"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="reveal-back">🏠</button>
+    </div>
+    <div class="reveal-hint" id="reveal-hint">Tap anywhere! ✨</div>
+  </div>
+
+  <script src="js/sounds.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/pop-game.js"></script>
+  <script src="js/reveal-game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

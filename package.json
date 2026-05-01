@@ -1,0 +1,8 @@
+{
+  "name": "boomoji",
+  "version": "1.0.0",
+  "description": "Fun emoji PWA for kids",
+  "scripts": {
+    "dev": "npx serve . -l 3000"
+  }
+}

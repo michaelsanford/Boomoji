@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+
+# generator scripts (output files are tracked)
+generate-banner.html
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# editors
+.vscode/
+.idea/
+*.suo
+*.user
