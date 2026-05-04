@@ -1,8 +1,9 @@
-const CACHE = 'boomoji-v6';
+const CACHE = 'boomoji-v8';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
+  './js/i18n.js',
   './js/app.js',
   './js/sounds.js',
   './js/particles.js',

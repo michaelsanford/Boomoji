@@ -702,6 +702,102 @@ canvas { display: block; }
   text-underline-offset: 2px;
 }
 
+/* ─── MENU FOOTER LANGUAGE BUTTON ────────────────────────────────────────── */
+
+.menu-lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.38);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 8px 20px;
+  pointer-events: all;
+  letter-spacing: 0.5px;
+}
+
+/* ─── LANGUAGE PICKER OVERLAY ─────────────────────────────────────────────── */
+
+.lang-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity .25s ease;
+  padding: 20px;
+}
+
+.lang-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lang-card {
+  background: #fff;
+  border-radius: 28px;
+  padding: 28px 24px 20px;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+  transform: scale(.88);
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lang-overlay.visible .lang-card {
+  transform: scale(1);
+}
+
+.lang-card-title {
+  font-family: 'Fredoka One', inherit;
+  font-size: 20px;
+  color: #9b59b6;
+  margin-bottom: 4px;
+}
+
+.lang-opt {
+  display: block;
+  width: 100%;
+  padding: 13px 20px;
+  border: 2px solid #e5e5ea;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 18px;
+  color: #333;
+  background: #fff;
+  cursor: pointer;
+  transition: background .12s ease, border-color .12s ease, transform .1s ease;
+}
+
+.lang-opt:active {
+  transform: scale(.96);
+  background: #f2e9ff;
+  border-color: #c77dff;
+}
+
+.lang-cancel {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  color: #aaa;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 2px;
+}
+
 /* ─── UPDATE TOAST ────────────────────────────────────────────────────────── */
 
 #update-toast {

@@ -128,8 +128,8 @@ class StickersGame {
   }
 
   _updateBadge() {
-    const t = this._currentTheme();
-    this.badge.textContent = `${t.icon} ${t.name}`;
+    const theme = this._currentTheme();
+    this.badge.textContent = `${theme.icon} ${t(`sticker.${theme.id}`)}`;
   }
 
   /* ── stars (space theme) ───────────────────────────────────────────────── */
@@ -452,8 +452,8 @@ class StickersGame {
     const nextIndex = (this.themeIndex + 1) % STICKER_THEMES.length;
     const next      = STICKER_THEMES[nextIndex];
     this.overlayEmoji.textContent = this._currentTheme().icon;
-    this.overlayMsg.textContent   = 'Great job!';
-    this.overlaySub.textContent   = `Next up: ${next.name} ${next.icon}`;
+    this.overlayMsg.textContent   = t('stickers.great_job');
+    this.overlaySub.textContent   = t('stickers.next_up', t(`sticker.${next.id}`), next.icon);
 
     this.overlayInner.style.transition = 'none';
     this.overlayInner.style.transform  = 'scale(0)';

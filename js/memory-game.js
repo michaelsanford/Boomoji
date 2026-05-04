@@ -1,4 +1,3 @@
-const MEMORY_MSGS  = ['You did it!', 'Amazing!', 'Brilliant!', 'Superstar!'];
 const MEMORY_EMOJI = ['🎉', '🏆', '🌟', '🎊'];
 
 class MemoryGame {
@@ -310,9 +309,9 @@ class MemoryGame {
   }
 
   _showOverlay() {
-    const idx = Math.floor(Math.random() * MEMORY_MSGS.length);
+    const idx = Math.floor(Math.random() * MEMORY_EMOJI.length);
     this.overlayEmoji.textContent = MEMORY_EMOJI[idx];
-    this.overlayMsg.textContent   = MEMORY_MSGS[idx];
+    this.overlayMsg.textContent   = t(`memory.win.${idx}`);
 
     this.overlayInner.style.transition = 'none';
     this.overlayInner.style.transform  = 'scale(0)';
@@ -333,8 +332,8 @@ class MemoryGame {
 
   _updateBadge() {
     this.badge.textContent = this.matchCount > 0
-      ? `${this.matchCount} / 8 matched`
-      : 'Find the pairs!';
+      ? t('memory.matched', this.matchCount)
+      : t('memory.find_pairs');
   }
 
   _onResize() {

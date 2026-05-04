@@ -30,22 +30,26 @@ Tap the canvas to place emoji stickers on themed scenes — Animals, Ocean, Yumm
 
 Sixteen face-down tiles hide 8 pairs of matching emojis — all random every game. Tap two tiles to flip them; find the match to keep them revealed. Find all 8 pairs to win!
 
-## Dev
+## Localisation
 
-**Requirements:** Node.js (for `npx`)
+Boomoji supports four languages:
 
-```bash
-# serve locally
-npm run dev          # → http://localhost:3000
-```
+| Code | English name                 |
+|------|------------------------------|
+| `en` | English                      |
+| `fr` | Français (French)            |
+| `gu` | ગુજરાતી (Gujarati)            |
+| `zh` | 中文 (Mandarin (Simplified)) |
 
-Open on a phone via your local IP (e.g. `http://192.168.x.x:3000`) for the full touch experience. Chrome on Android will offer an "Add to Home Screen" prompt after a few visits.
+The display language is auto-detected from `navigator.language` on first launch. Users can switch languages at any time via the 🌐 button in the menu footer; the choice is persisted to `localStorage` (`boomoji-lang`).
+
+All strings — game titles, descriptions, celebration messages, badge text, and the full Privacy Policy — are translated. Translations live in `js/i18n.js`.
 
 ## PWA icons
 
 The PNG icons aren't tracked in git. To generate them:
 
-1. While the dev server is running, open `http://localhost:3000/icons/generate.html`
+1. Open `icons/generate.html` directly in a browser (no server needed)
 2. Three PNGs will auto-download: `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`
 3. Move them into `icons/`
 
@@ -55,7 +59,7 @@ The SVG icon (`icons/icon.svg`) is tracked and sufficient for Android PWA instal
 
 The service worker (`sw.js`) uses a **cache-first** strategy: every request is served from the cache; only cache misses hit the network. All JS, CSS, HTML, the manifest, and `icons/icon.svg` are precached on install. The three PNG icons are cached opportunistically — a missing file won't abort installation.
 
-**Deploying an update:** bump the `CACHE` constant in `sw.js` (currently `boomoji-v5`). On next load the new SW installs, old cache versions are purged on activate, and the page reloads automatically to serve fresh assets.
+**Deploying an update:** bump the `CACHE` constant in `sw.js`. On next load the new SW installs, old cache versions are purged on activate, and the page reloads automatically to serve fresh assets.
 
 ## Project structure
 

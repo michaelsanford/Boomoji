@@ -49,43 +49,44 @@
       <span class="floatie" style="--x:82%;--d:9.5s;--delay:0.3s">🦋</span>
     </div>
     <div class="menu-content">
-      <h1 class="menu-title">Boomoji!</h1>
-      <p class="menu-subtitle">Tap · Play · Discover</p>
+      <h1 class="menu-title" data-i18n="menu.title">Boomoji!</h1>
+      <p class="menu-subtitle" data-i18n="menu.subtitle">Tap · Play · Discover</p>
       <div class="menu-cards">
         <button class="game-card pop-card" id="btn-pop">
           <div class="card-emoji">🎈</div>
-          <div class="card-title">Pop!</div>
-          <div class="card-desc">Tap the bouncing emojis!</div>
+          <div class="card-title" data-i18n="game.pop.title">Pop!</div>
+          <div class="card-desc"  data-i18n="game.pop.desc">Tap the bouncing emojis!</div>
         </button>
         <button class="game-card reveal-card" id="btn-reveal">
           <div class="card-emoji">✨</div>
-          <div class="card-title">Reveal!</div>
-          <div class="card-desc">Touch to discover emojis!</div>
+          <div class="card-title" data-i18n="game.reveal.title">Reveal!</div>
+          <div class="card-desc"  data-i18n="game.reveal.desc">Touch to discover emojis!</div>
         </button>
         <button class="game-card grow-card" id="btn-grow">
           <div class="card-emoji">💜</div>
-          <div class="card-title">Grow!</div>
-          <div class="card-desc">Hold to inflate... BOOM!</div>
+          <div class="card-title" data-i18n="game.grow.title">Grow!</div>
+          <div class="card-desc"  data-i18n="game.grow.desc">Hold to inflate… BOOM!</div>
         </button>
         <button class="game-card rain-card" id="btn-rain">
           <div class="card-emoji">🌧️</div>
-          <div class="card-title">Rain!</div>
-          <div class="card-desc">Tap the falling emojis!</div>
+          <div class="card-title" data-i18n="game.rain.title">Rain!</div>
+          <div class="card-desc"  data-i18n="game.rain.desc">Tap the falling emojis!</div>
         </button>
         <button class="game-card stickers-card" id="btn-stickers">
           <div class="card-emoji">🎨</div>
-          <div class="card-title">Stickers!</div>
-          <div class="card-desc">Decorate every scene!</div>
+          <div class="card-title" data-i18n="game.stickers.title">Stickers!</div>
+          <div class="card-desc"  data-i18n="game.stickers.desc">Decorate every scene!</div>
         </button>
         <button class="game-card memory-card" id="btn-memory">
           <div class="card-emoji">🧩</div>
-          <div class="card-title">Memory!</div>
-          <div class="card-desc">Find the matching pairs!</div>
+          <div class="card-title" data-i18n="game.memory.title">Memory!</div>
+          <div class="card-desc"  data-i18n="game.memory.desc">Find the matching pairs!</div>
         </button>
       </div>
     </div>
     <div class="menu-footer">
-      <button class="menu-privacy-link" id="privacy-link">Privacy Policy</button>
+      <button class="menu-lang-btn" id="lang-btn" data-i18n="menu.language">🌐 Language</button>
+      <button class="menu-privacy-link" id="privacy-link" data-i18n="menu.privacy">Privacy Policy</button>
     </div>
   </div>
 
@@ -111,7 +112,7 @@
     <div class="hud">
       <button class="back-btn" id="reveal-back">🏠</button>
     </div>
-    <div class="reveal-hint" id="reveal-hint">Tap anywhere! ✨</div>
+    <div class="reveal-hint" id="reveal-hint" data-i18n="reveal.hint">Tap anywhere! ✨</div>
   </div>
 
   <!-- ═══════════════ GROW GAME ═══════════════ -->
@@ -137,7 +138,7 @@
       <button class="back-btn" id="stickers-back">🏠</button>
       <div class="round-badge" id="stickers-badge">🐾 Animals</div>
     </div>
-    <div class="stickers-hint" id="stickers-hint">Tap to place stickers! ✨</div>
+    <div class="stickers-hint" id="stickers-hint" data-i18n="stickers.hint">Tap to place stickers! ✨</div>
     <div class="round-overlay" id="stickers-overlay">
       <div class="overlay-inner">
         <div class="overlay-emoji"></div>
@@ -158,7 +159,7 @@
       <div class="overlay-inner" id="memory-overlay-inner">
         <div class="overlay-emoji" id="memory-overlay-emoji">🎉</div>
         <div class="overlay-msg"   id="memory-overlay-msg">You did it!</div>
-        <button class="memory-replay-btn" id="memory-replay-btn">Play Again!</button>
+        <button class="memory-replay-btn" id="memory-replay-btn" data-i18n="memory.replay">Play Again!</button>
       </div>
     </div>
   </div>
@@ -167,114 +168,11 @@
   <div id="screen-privacy" class="screen">
     <div class="privacy-header">
       <button class="back-btn" id="privacy-back">🏠</button>
-      <span class="privacy-title-bar">Privacy Policy</span>
+      <span class="privacy-title-bar" data-i18n="privacy.title">Privacy Policy</span>
     </div>
     <div class="privacy-body">
-      <div class="privacy-content">
-
-        <!-- ── PLAIN-LANGUAGE SUMMARY ── -->
-        <div class="privacy-summary">
-          <h2 class="privacy-section-title">The Short Version</h2>
-          <p>Boomoji is a free emoji game made with love for young children. It is a personal project with no commercial intent.</p>
-          <ul>
-            <li><strong>We collect nothing.</strong> No names, email addresses, location, device identifiers, or usage analytics.</li>
-            <li><strong>We sell nothing.</strong> No ads, no in-app purchases, no subscriptions, no data brokers.</li>
-            <li><strong>We track nothing.</strong> No cookies, no cross-site tracking, no profiling of any kind.</li>
-            <li><strong>What's on your device:</strong> A copy of the app's own files so it works offline (a Service Worker cache). No personal information whatsoever.</li>
-            <li><strong>Questions?</strong> Open an issue at <a class="privacy-link" href="https://github.com/michaelsanford/Boomoji/issues" target="_blank" rel="noopener">github.com/michaelsanford/Boomoji</a></li>
-          </ul>
-        </div>
-
-        <!-- ── FULL LEGAL POLICY ── -->
-        <p class="privacy-effective-date">Effective date: May 4, 2026 &nbsp;·&nbsp; Version 1.0</p>
-
-        <h2 class="privacy-h2">1. About This Policy</h2>
-        <p>This Privacy Policy explains how Boomoji ("the App", "we", "our") handles information in connection with your use of the application. This policy applies to all users in all jurisdictions, with specific provisions for the European Economic Area, Canada, and the United States.</p>
-        <p>Applicable legislation this policy is designed to address:</p>
-        <ul>
-          <li>General Data Protection Regulation (EU) 2016/679 ("GDPR")</li>
-          <li>Canada's Personal Information Protection and Electronic Documents Act ("PIPEDA")</li>
-          <li>Quebec's Act Respecting the Protection of Personal Information in the Private Sector, as modernised by Law 25 / Bill 64 (in force September 2023)</li>
-          <li>Quebec's Act Respecting the Protection of Consumers (Loi sur la protection des consommateurs, CQLR c P-40.1)</li>
-          <li>U.S. Children's Online Privacy Protection Act ("COPPA"), 15 U.S.C. §§ 6501–6506, and accompanying FTC Rule (16 C.F.R. Part 312)</li>
-        </ul>
-
-        <h2 class="privacy-h2">2. Identity of the Operator</h2>
-        <p>Michael Sanford, an individual developer. Contact: <a class="privacy-link" href="https://github.com/michaelsanford/Boomoji/issues" target="_blank" rel="noopener">github.com/michaelsanford/Boomoji</a></p>
-        <p>Michael Sanford is also designated as the <em>Person Responsible for Personal Information</em> (<em>responsable de la protection des renseignements personnels</em>) pursuant to Section 3.1 of Quebec's Act Respecting the Protection of Personal Information in the Private Sector.</p>
-
-        <h2 class="privacy-h2">3. Information We Do Not Collect</h2>
-        <p>We do not collect, process, store, transmit, or share any personal information. Specifically, we collect no:</p>
-        <ul>
-          <li>Names, usernames, or aliases</li>
-          <li>Email addresses or other contact information</li>
-          <li>Phone numbers</li>
-          <li>Device identifiers (IDFA, Android Advertising ID, or similar)</li>
-          <li>IP addresses or geolocation data</li>
-          <li>Usage analytics or behavioural tracking data</li>
-          <li>Biometric data</li>
-          <li>Financial information</li>
-          <li>Social network identifiers</li>
-          <li>Cookies of any kind</li>
-        </ul>
-        <p>There are no user accounts. No registration is required or possible.</p>
-
-        <h2 class="privacy-h2">4. Technical Data Processed on Your Device</h2>
-        <p>The only data stored is your device's local Service Worker cache, which holds a copy of the App's own files solely to enable offline play:</p>
-        <ul>
-          <li>index.html, style.css, and JavaScript files (application logic)</li>
-          <li>Icon image files and the web application manifest</li>
-        </ul>
-        <p>This cache is stored <strong>locally on your device only</strong>. It is never transmitted to any server and contains no personal information. It is automatically replaced when the App is updated. You may clear it at any time through your browser or operating system settings (typically under "Storage" or "Site Data").</p>
-        <p>No <code>localStorage</code>, <code>sessionStorage</code>, <code>IndexedDB</code>, or cookies are used by this application.</p>
-        <h3 class="privacy-h3">Google Fonts</h3>
-        <p>On the very first load of the App (when an internet connection is available), the App loads a typeface called Fredoka One from Google Fonts (<a class="privacy-link" href="https://fonts.google.com" target="_blank" rel="noopener">fonts.google.com</a>). This request transmits your IP address to Google's servers. After the first load, the font is cached locally by your browser and is not requested from Google again. This one-time request is governed by <a class="privacy-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. If you wish to avoid it entirely, you may load the App once on a trusted network, then use it offline thereafter.</p>
-
-        <h2 class="privacy-h2">5. Children's Privacy</h2>
-        <p>Boomoji is designed for use by young children under the direct supervision of a parent or guardian. Because we collect no personal information from any user of any age:</p>
-        <ul>
-          <li><strong>COPPA:</strong> No verifiable parental consent mechanism is necessary, as no personal information is solicited or collected from children under 13.</li>
-          <li><strong>GDPR Article 8:</strong> No parental consent for data processing is required, as no personal data is processed.</li>
-          <li><strong>Quebec Law 25:</strong> The App satisfies the privacy-by-design principle (s. 91) by collecting nothing at the point of design.</li>
-        </ul>
-        <p>A parent gate (a simple arithmetic challenge) separates this Privacy Policy and other non-game content from the child-facing interface.</p>
-
-        <h2 class="privacy-h2">6. No Third-Party Services</h2>
-        <p>Other than the one-time Google Fonts request described in Section 4, this App does not use any third-party services. Specifically:</p>
-        <ul>
-          <li>No analytics platforms (e.g., Google Analytics, Mixpanel, Amplitude)</li>
-          <li>No advertising networks or ad SDKs</li>
-          <li>No social login or social sharing widgets</li>
-          <li>No remote content delivery networks (CDNs)</li>
-          <li>No crash reporting or performance monitoring services</li>
-          <li>No payment processors</li>
-        </ul>
-        <p>All application resources load locally from the App bundle after the initial installation.</p>
-
-        <h2 class="privacy-h2">7. Data Transfers</h2>
-        <p>Because we collect no personal data, there are no personal data transfers attributable to this App. The one-time Google Fonts request (Section 4) involves your IP address being transmitted to Google's servers; that transfer is governed entirely by Google's Privacy Policy.</p>
-
-        <h2 class="privacy-h2">8. Your Rights</h2>
-        <p>Under applicable law, you may have rights to access, correct, delete, obtain a copy of, or object to the processing of your personal information:</p>
-        <ul>
-          <li>GDPR Articles 15–21 (EEA residents)</li>
-          <li>PIPEDA Principle 9 (Canadian residents)</li>
-          <li>Quebec Act Respecting the Protection of Personal Information, ss. 27–28.1 (Quebec residents)</li>
-        </ul>
-        <p>Because we hold no personal information about any user, all of these rights are satisfied by design — there is nothing to access, correct, export, or delete. If you have any question or concern, please contact us and we will respond promptly.</p>
-
-        <h2 class="privacy-h2">9. Retention</h2>
-        <p>We retain no personal data. The Service Worker cache (which contains only App files, not personal information) is automatically cleared and replaced each time the App is updated. You may clear it manually at any time through your browser or operating system settings.</p>
-
-        <h2 class="privacy-h2">10. Changes to This Policy</h2>
-        <p>If we make material changes to this policy, the effective date shown at the top of this document will be updated and the revised policy will be distributed as part of the next App update. Because there are no user accounts or contact information on file, we cannot provide individual advance notice of changes.</p>
-
-        <h2 class="privacy-h2">11. Contact and Complaints</h2>
-        <p>For any privacy question, request, or concern, please open an issue on the app's GitHub repository: <a class="privacy-link" href="https://github.com/michaelsanford/Boomoji/issues" target="_blank" rel="noopener">github.com/michaelsanford/Boomoji</a></p>
-        <p>If you are a <strong>Quebec resident</strong> and your concern is not resolved to your satisfaction, you may contact the Commission d'accès à l'information (CAI): <a class="privacy-link" href="https://www.cai.gouv.qc.ca" target="_blank" rel="noopener">cai.gouv.qc.ca</a></p>
-        <p>If you are an <strong>EU or EEA resident</strong>, you may lodge a complaint with your national data protection supervisory authority. A list of authorities is available at: <a class="privacy-link" href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">edpb.europa.eu</a></p>
-        <p>If you are a <strong>U.S. parent or guardian</strong> with a concern about children's privacy, you may contact the Federal Trade Commission (FTC) at <a class="privacy-link" href="https://www.ftc.gov" target="_blank" rel="noopener">ftc.gov</a>.</p>
-
+      <div class="privacy-content" id="privacy-content">
+        <!-- filled by applyTranslations() in i18n.js -->
       </div>
     </div>
   </div>
@@ -283,19 +181,32 @@
   <div id="parent-gate-overlay" class="parent-gate-overlay">
     <div class="parent-gate-card">
       <div class="gate-icon">🔐</div>
-      <h2 class="gate-heading">For Parents &amp; Guardians</h2>
-      <p class="gate-desc">Solve this to continue:</p>
+      <h2 class="gate-heading" data-i18n="gate.heading">For Parents &amp; Guardians</h2>
+      <p class="gate-desc" data-i18n="gate.desc">Solve this to continue:</p>
       <p class="gate-question" id="gate-question">7 + 8 = ?</p>
       <input type="number" class="gate-input" id="gate-input" inputmode="numeric" pattern="[0-9]*" placeholder="?" autocomplete="off">
       <div class="gate-buttons">
-        <button class="gate-btn gate-cancel" id="gate-cancel">Cancel</button>
-        <button class="gate-btn gate-confirm" id="gate-confirm">Confirm</button>
+        <button class="gate-btn gate-cancel" id="gate-cancel" data-i18n="gate.cancel">Cancel</button>
+        <button class="gate-btn gate-confirm" id="gate-confirm" data-i18n="gate.confirm">Confirm</button>
       </div>
     </div>
   </div>
 
-  <div id="update-toast">✨ Updated!</div>
+  <!-- ═══════════════ LANGUAGE PICKER ═══════════════ -->
+  <div id="lang-overlay" class="lang-overlay">
+    <div class="lang-card">
+      <p class="lang-card-title" data-i18n="lang.picker.title">Choose language</p>
+      <button class="lang-opt" data-lang="en">English</button>
+      <button class="lang-opt" data-lang="fr">Français</button>
+      <button class="lang-opt" data-lang="gu">ગુજરાતી</button>
+      <button class="lang-opt" data-lang="zh">中文</button>
+      <button class="lang-cancel" id="lang-cancel">✕</button>
+    </div>
+  </div>
 
+  <div id="update-toast" data-i18n="update.toast">✨ Updated!</div>
+
+  <script src="js/i18n.js"></script>
   <script src="js/sounds.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/pop-game.js"></script>

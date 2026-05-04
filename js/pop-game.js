@@ -1,4 +1,3 @@
-const CELEBRATE_MSGS = ['Amazing!', 'Woohoo!', 'Brilliant!', 'Superstar!', 'Incredible!', 'You Rock!'];
 const CELEBRATE_EMOJI = ['🎉', '🌟', '🏆', '🎊', '💫', '⭐'];
 
 class PopGame {
@@ -235,10 +234,10 @@ class PopGame {
   }
 
   _showOverlay() {
-    const idx = Math.floor(Math.random() * CELEBRATE_MSGS.length);
+    const idx = Math.floor(Math.random() * CELEBRATE_EMOJI.length);
     this.overlayEmoji.textContent = CELEBRATE_EMOJI[idx];
-    this.overlayMsg.textContent   = CELEBRATE_MSGS[idx];
-    this.overlaySub.textContent   = `Round ${this.round + 1}: ${this.round + 1} emojis! 🚀`;
+    this.overlayMsg.textContent   = t(`celebrate.${idx}`);
+    this.overlaySub.textContent   = t('pop.next_round', this.round + 1);
 
     /* reset animation without forced reflow */
     this.overlayInner.style.transition = 'none';
@@ -261,7 +260,7 @@ class PopGame {
   _updateBadge() {
     const left = this.emojis.filter(e => e.state === 'alive' || e.state === 'spawning').length;
     this.badge.textContent = left > 0
-      ? `Round ${this.round} · ${left} left`
-      : `Round ${this.round}`;
+      ? t('pop.round_with_left', this.round, left)
+      : t('pop.round', this.round);
   }
 }
