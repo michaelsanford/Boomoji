@@ -9,6 +9,8 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(`screen-${id}`).classList.add('active');
   current = id;
+  const paused = id !== 'menu' ? 'paused' : '';
+  document.querySelectorAll('.floatie').forEach(f => f.style.animationPlayState = paused);
 }
 
 function startGame(name) {
@@ -88,8 +90,14 @@ if ('serviceWorker' in navigator) {
       reg.update(); // check for new SW on every page load, bypasses HTTP cache
     }).catch(() => {});
   });
-  /* when a new SW takes control, reload to serve fresh cached assets */
+  /* when a new SW takes control, show a toast then reload */
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    window.location.reload();
+    const toast = document.getElementById('update-toast');
+    if (toast) {
+      toast.classList.add('visible');
+      setTimeout(() => window.location.reload(), 1600);
+    } else {
+      window.location.reload();
+    }
   });
 }

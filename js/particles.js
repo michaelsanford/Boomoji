@@ -82,6 +82,14 @@ function _starPath(ctx, cx, cy, r, R, pts) {
 
 const SHAPES = ['circle', 'circle', 'square', 'triangle', 'star'];
 
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function spawnBurst(x, y, count, spread) {
   count  = count  || 28;
   spread = spread || 1;

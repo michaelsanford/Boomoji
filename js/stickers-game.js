@@ -57,6 +57,7 @@ class StickersGame {
     this.celebrating = false;
     this.pool        = [];
     this.hinted      = false;
+    this.bgCanvas    = null;
 
     this._resize = ()  => this._onResize();
     this._touch  = (e) => { e.preventDefault(); this._onTouch(e); };
@@ -100,6 +101,7 @@ class StickersGame {
   _onResize() {
     this.canvas.width  = window.innerWidth;
     this.canvas.height = window.innerHeight;
+    this.bgCanvas = null;
     if (this._currentTheme()?.id === 'space') this._initStars();
   }
 
@@ -109,9 +111,10 @@ class StickersGame {
 
   _loadTheme() {
     const theme = this._currentTheme();
-    this.pool       = [...theme.emojis].sort(() => Math.random() - 0.5);
+    this.pool       = shuffle([...theme.emojis]);
     this.stickers   = [];
     this.stampCount = 0;
+    this.bgCanvas   = null;
     this._updateBadge();
     if (theme.id === 'space') this._initStars();
     else this.stars = [];
@@ -157,10 +160,12 @@ class StickersGame {
 
   _update() {
     /* particles */
-    for (let i = this.particles.length - 1; i >= 0; i--) {
+    let alive = 0;
+    for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].update();
-      if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+      if (this.particles[i].life > 0) this.particles[alive++] = this.particles[i];
     }
+    this.particles.length = alive;
 
     /* star twinkle */
     for (const s of this.stars) s.twinkle += s.twinkleSpeed;
@@ -179,8 +184,19 @@ class StickersGame {
   _draw() {
     const ctx = this.ctx;
     const W = this.canvas.width, H = this.canvas.height;
+    const id = this._currentTheme().id;
 
-    this._drawBackground(W, H);
+    if (id === 'space') {
+      this._drawBackground(ctx, W, H);
+    } else {
+      if (!this.bgCanvas) {
+        this.bgCanvas        = document.createElement('canvas');
+        this.bgCanvas.width  = W;
+        this.bgCanvas.height = H;
+        this._drawBackground(this.bgCanvas.getContext('2d'), W, H);
+      }
+      ctx.drawImage(this.bgCanvas, 0, 0);
+    }
 
     for (const p of this.particles) p.draw(ctx);
 
@@ -189,7 +205,7 @@ class StickersGame {
       ctx.translate(s.x, s.y);
       ctx.rotate(s.rot);
       ctx.scale(s.bounceSc, s.bounceSc);
-      ctx.font         = `${s.size}px serif`;
+      ctx.font         = s.font;
       ctx.textAlign    = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(s.emoji, 0, 0);
@@ -199,8 +215,7 @@ class StickersGame {
 
   /* ── backgrounds ───────────────────────────────────────────────────────── */
 
-  _drawBackground(W, H) {
-    const ctx = this.ctx;
+  _drawBackground(ctx, W, H) {
     const id  = this._currentTheme().id;
 
     if (id === 'animals') {
@@ -380,9 +395,9 @@ class StickersGame {
   /* ── sticker placement ─────────────────────────────────────────────────── */
 
   _onTouch(e) {
+    const r = this.canvas.getBoundingClientRect();
     for (let i = 0; i < e.changedTouches.length; i++) {
       const t = e.changedTouches[i];
-      const r = this.canvas.getBoundingClientRect();
       this._placeSticker(t.clientX - r.left, t.clientY - r.top);
     }
   }
@@ -400,7 +415,7 @@ class StickersGame {
       this.hint.classList.add('gone');
     }
 
-    if (!this.pool.length) this.pool = [...this._currentTheme().emojis].sort(() => Math.random() - 0.5);
+    if (!this.pool.length) this.pool = shuffle([...this._currentTheme().emojis]);
     const emoji = this.pool.pop();
     const size  = 65 + Math.floor(Math.random() * 26);
 
@@ -408,6 +423,7 @@ class StickersGame {
       emoji,
       x, y,
       size,
+      font:       `${size}px serif`,
       rot:        (Math.random() - 0.5) * 0.5,
       bounceSc:   0.01,
       bounceVel:  0,
@@ -442,14 +458,14 @@ class StickersGame {
     this.overlayInner.style.transition = 'none';
     this.overlayInner.style.transform  = 'scale(0)';
     this.overlayInner.style.opacity    = '0';
-    this.overlayInner.offsetHeight;
-    this.overlayInner.style.transition = '';
-
     this.overlay.classList.add('visible');
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      this.overlayInner.style.transform = '';
-      this.overlayInner.style.opacity   = '';
-    }));
+    requestAnimationFrame(() => {
+      this.overlayInner.style.transition = '';
+      requestAnimationFrame(() => {
+        this.overlayInner.style.transform = '';
+        this.overlayInner.style.opacity   = '';
+      });
+    });
 
     setTimeout(() => this._nextTheme(), 2500);
   }

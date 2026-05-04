@@ -1,4 +1,4 @@
-const CACHE = 'boomoji-v3';
+const CACHE = 'boomoji-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -12,13 +12,23 @@ const ASSETS = [
   './js/rain-game.js',
   './js/stickers-game.js',
   './manifest.json',
+  './icons/icon.svg',
+];
+
+/* PNG icons are not git-tracked; cache them if present but don't fail install */
+const ICON_PNGS = [
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE)
-      .then(c => c.addAll(ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE).then(async c => {
+      await c.addAll(ASSETS);
+      await Promise.allSettled(ICON_PNGS.map(url => c.add(url).catch(() => {})));
+      return self.skipWaiting();
+    })
   );
 });
 

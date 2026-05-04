@@ -35,7 +35,7 @@ class RevealGame {
     this.emojis = [];
     this.particles = [];
     this.touchTracks.clear();
-    this.pool = [...EMOJIS].sort(() => Math.random() - 0.5);
+    this.pool = shuffle([...EMOJIS]);
     this.hinted = false;
     this.hint.classList.remove('gone');
 
@@ -86,7 +86,7 @@ class RevealGame {
   }
 
   _pickEmoji() {
-    if (this.pool.length === 0) this.pool = [...EMOJIS].sort(() => Math.random() - 0.5);
+    if (this.pool.length === 0) this.pool = shuffle([...EMOJIS]);
     return this.pool.pop();
   }
 
@@ -109,10 +109,12 @@ class RevealGame {
     }
 
     /* burst particles */
-    for (let i = this.particles.length - 1; i >= 0; i--) {
+    let alive = 0;
+    for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].update();
-      if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+      if (this.particles[i].life > 0) this.particles[alive++] = this.particles[i];
     }
+    this.particles.length = alive;
 
     /* emojis */
     for (const e of this.emojis) {
@@ -177,7 +179,7 @@ class RevealGame {
       ctx.translate(e.x, e.y);
       ctx.rotate(e.rot);
       ctx.scale(e.scale, e.scale);
-      ctx.font = `${e.size}px serif`;
+      ctx.font = e.font;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(e.emoji, 0, 0);
@@ -202,6 +204,7 @@ class RevealGame {
       rot:      (Math.random() - 0.5) * 0.4,
       rotSpeed: (Math.random() - 0.5) * 0.018,
       size,
+      font:     `${size}px serif`,
       scale:    0.05,
       state,
       born:     Date.now(),

@@ -43,7 +43,7 @@ class GrowGame {
     this.exploding  = false;
     this.flashAlpha = 0;
     this.particles  = [];
-    this.pool       = [...EMOJIS].sort(() => Math.random() - 0.5);
+    this.pool       = shuffle([...EMOJIS]);
     this._nextEmoji();
     this._loop();
   }
@@ -68,7 +68,7 @@ class GrowGame {
   }
 
   _pickEmoji() {
-    if (!this.pool.length) this.pool = [...EMOJIS].sort(() => Math.random() - 0.5);
+    if (!this.pool.length) this.pool = shuffle([...EMOJIS]);
     return this.pool.pop();
   }
 
@@ -89,10 +89,12 @@ class GrowGame {
   }
 
   _update() {
-    for (let i = this.particles.length - 1; i >= 0; i--) {
+    let alive = 0;
+    for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].update();
-      if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+      if (this.particles[i].life > 0) this.particles[alive++] = this.particles[i];
     }
+    this.particles.length = alive;
 
     if (this.flashAlpha > 0) this.flashAlpha = Math.max(0, this.flashAlpha - 0.035);
 

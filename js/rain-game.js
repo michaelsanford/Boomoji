@@ -30,7 +30,7 @@ class RainGame {
     this.particles  = [];
     this.spawnTimer = 0;
     this.gameFrame  = 0;
-    this.pool       = [...EMOJIS].sort(() => Math.random() - 0.5);
+    this.pool       = shuffle([...EMOJIS]);
     this._initStreaks();
     this._loop();
   }
@@ -70,7 +70,7 @@ class RainGame {
   }
 
   _pickEmoji() {
-    if (!this.pool.length) this.pool = [...EMOJIS].sort(() => Math.random() - 0.5);
+    if (!this.pool.length) this.pool = shuffle([...EMOJIS]);
     return this.pool.pop();
   }
 
@@ -93,6 +93,7 @@ class RainGame {
       rot:      (Math.random() - 0.5) * 0.3,
       rotSpeed: (Math.random() - 0.5) * 0.022,
       size,
+      font:     `${size}px serif`,
       scale:    0.1,
       state:    'alive',
       popT:     0,
@@ -114,10 +115,12 @@ class RainGame {
       this.spawnTimer = this._spawnInterval();
     }
 
-    for (let i = this.particles.length - 1; i >= 0; i--) {
+    let alive = 0;
+    for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].update();
-      if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+      if (this.particles[i].life > 0) this.particles[alive++] = this.particles[i];
     }
+    this.particles.length = alive;
 
     for (const s of this.streaks) {
       s.y += s.vy;
@@ -183,7 +186,7 @@ class RainGame {
         ctx.globalAlpha  = Math.max(0, 1 - f.splatT * 2.2);
         ctx.translate(f.x, H);
         ctx.scale(scaleX, scaleY);
-        ctx.font         = `${f.size}px serif`;
+        ctx.font         = f.font;
         ctx.textAlign    = 'center';
         ctx.textBaseline = 'bottom';
         ctx.fillText(f.emoji, 0, 0);
@@ -193,7 +196,7 @@ class RainGame {
         ctx.rotate(f.rot);
         ctx.scale(f.scale, f.scale);
         ctx.globalAlpha  = alpha;
-        ctx.font         = `${f.size}px serif`;
+        ctx.font         = f.font;
         ctx.textAlign    = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(f.emoji, 0, 0);
@@ -225,9 +228,9 @@ class RainGame {
   /* ── input ─────────────────────────────────────────────────────────────── */
 
   _onTouch(e) {
+    const r = this.canvas.getBoundingClientRect();
     for (let i = 0; i < e.changedTouches.length; i++) {
       const t = e.changedTouches[i];
-      const r = this.canvas.getBoundingClientRect();
       this._tryPop(t.clientX - r.left, t.clientY - r.top);
     }
   }

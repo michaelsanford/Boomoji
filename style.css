@@ -363,3 +363,30 @@ canvas { display: block; }
 }
 
 .stickers-hint.gone { opacity: 0; }
+
+/* ─── UPDATE TOAST ────────────────────────────────────────────────────────── */
+
+#update-toast {
+  position: fixed;
+  bottom: max(32px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #b36bff;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-size: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+  white-space: nowrap;
+}
+
+#update-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

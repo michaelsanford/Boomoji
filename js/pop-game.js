@@ -39,7 +39,7 @@ class PopGame {
     this.roundLock = false;
     this.emojis    = [];
     this.particles = [];
-    this.pool      = [...EMOJIS].sort(() => Math.random() - 0.5);
+    this.pool      = shuffle([...EMOJIS]);
 
     this._updateBadge();
     this._spawnRound();
@@ -66,7 +66,7 @@ class PopGame {
   }
 
   _pickEmoji() {
-    if (this.pool.length === 0) this.pool = [...EMOJIS].sort(() => Math.random() - 0.5);
+    if (this.pool.length === 0) this.pool = shuffle([...EMOJIS]);
     return this.pool.pop();
   }
 
@@ -92,6 +92,7 @@ class PopGame {
         rotSpeed:  (Math.random() - 0.5) * (0.025 + this.round * 0.003),
         breath:    Math.random() * Math.PI * 2,
         size,
+        font:    `${size}px serif`,
         scale:   0,
         state:   'spawning', // spawning | alive | popping | dead
         popT:    0,
@@ -111,10 +112,12 @@ class PopGame {
 
   _update() {
     /* particles */
-    for (let i = this.particles.length - 1; i >= 0; i--) {
+    let alive = 0;
+    for (let i = 0; i < this.particles.length; i++) {
       this.particles[i].update();
-      if (this.particles[i].life <= 0) this.particles.splice(i, 1);
+      if (this.particles[i].life > 0) this.particles[alive++] = this.particles[i];
     }
+    this.particles.length = alive;
 
     /* emojis */
     const W = this.canvas.width, H = this.canvas.height;
@@ -172,7 +175,7 @@ class PopGame {
       ctx.rotate(e.rot);
       ctx.scale(s, s);
       ctx.globalAlpha = alpha;
-      ctx.font = `${e.size}px serif`;
+      ctx.font = e.font;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(e.emoji, 0, 0);
@@ -181,9 +184,9 @@ class PopGame {
   }
 
   _onTouch(e) {
+    const r = this.canvas.getBoundingClientRect();
     for (let i = 0; i < e.changedTouches.length; i++) {
       const t = e.changedTouches[i];
-      const r = this.canvas.getBoundingClientRect();
       this._tryPop(t.clientX - r.left, t.clientY - r.top);
     }
   }
@@ -237,19 +240,18 @@ class PopGame {
     this.overlayMsg.textContent   = CELEBRATE_MSGS[idx];
     this.overlaySub.textContent   = `Round ${this.round + 1}: ${this.round + 1} emojis! 🚀`;
 
-    /* reset animation */
+    /* reset animation without forced reflow */
     this.overlayInner.style.transition = 'none';
     this.overlayInner.style.transform  = 'scale(0)';
     this.overlayInner.style.opacity    = '0';
-    this.overlayInner.offsetHeight;
-    this.overlayInner.style.transition = '';
-
     this.overlay.classList.add('visible');
-    /* micro-delay so transition applies */
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      this.overlayInner.style.transform = '';
-      this.overlayInner.style.opacity   = '';
-    }));
+    requestAnimationFrame(() => {
+      this.overlayInner.style.transition = '';
+      requestAnimationFrame(() => {
+        this.overlayInner.style.transform = '';
+        this.overlayInner.style.opacity   = '';
+      });
+    });
   }
 
   _hideOverlay() {
