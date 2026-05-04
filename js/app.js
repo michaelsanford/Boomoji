@@ -76,6 +76,14 @@ function goHome() {
   showScreen('menu');
 }
 
+const gate = new ParentGate(
+  document.getElementById('parent-gate-overlay'),
+  () => showScreen('privacy'),
+);
+
+document.getElementById('privacy-link').addEventListener('click', () => gate.show());
+document.getElementById('privacy-back').addEventListener('click', goHome);
+
 document.getElementById('btn-pop').addEventListener('click',      () => startGame('pop'));
 document.getElementById('btn-reveal').addEventListener('click',   () => startGame('reveal'));
 document.getElementById('btn-grow').addEventListener('click',     () => startGame('grow'));
