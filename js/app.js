@@ -84,6 +84,12 @@ document.addEventListener('click', function _fs() {
 /* register service worker */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      reg.update(); // check for new SW on every page load, bypasses HTTP cache
+    }).catch(() => {});
+  });
+  /* when a new SW takes control, reload to serve fresh cached assets */
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
   });
 }
