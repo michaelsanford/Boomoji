@@ -101,23 +101,32 @@ canvas { display: block; }
 }
 
 .menu-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
   width: 100%;
+}
+
+/* lone last card in an odd-count grid — centre it at half width */
+.menu-cards > .game-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: calc(50% - 7px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .game-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 18px;
-  width: 100%;
-  padding: 18px 22px;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px 14px;
   border: none;
   border-radius: 28px;
   cursor: pointer;
   font-family: inherit;
-  text-align: left;
+  text-align: center;
   box-shadow: 0 8px 0 rgba(0,0,0,.18), 0 14px 30px rgba(0,0,0,.2);
   transition: transform .12s ease, box-shadow .12s ease;
   -webkit-appearance: none;
@@ -128,17 +137,22 @@ canvas { display: block; }
   box-shadow: 0 3px 0 rgba(0,0,0,.18), 0 6px 15px rgba(0,0,0,.2);
 }
 
-.pop-card    { background: linear-gradient(135deg, #ff6b9d 0%, #ff8e53 100%); }
-.reveal-card { background: linear-gradient(135deg, #4ecdc4 0%, #44b8e0 100%); }
+.pop-card      { background: linear-gradient(135deg, #ff6b9d 0%, #ff8e53 100%); }
+.reveal-card   { background: linear-gradient(135deg, #4ecdc4 0%, #44b8e0 100%); }
+.grow-card     { background: linear-gradient(135deg, #9b59b6 0%, #e91e8c 100%); }
+.rain-card     { background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 100%); }
+.stickers-card { background: linear-gradient(135deg, #f9c74f 0%, #f8961e 100%); }
 
 .card-emoji {
-  font-size: 52px;
+  font-size: 46px;
   line-height: 1;
-  flex-shrink: 0;
   animation: cardWiggle 3s ease-in-out infinite;
 }
 
-.reveal-card .card-emoji { animation-delay: -1.5s; }
+.reveal-card   .card-emoji { animation-delay: -1.5s; }
+.grow-card     .card-emoji { animation-delay: -3s;   }
+.rain-card     .card-emoji { animation-delay: -4.5s; }
+.stickers-card .card-emoji { animation-delay: -0.7s; }
 
 @keyframes cardWiggle {
   0%, 100% { transform: rotate(-6deg) scale(1); }
@@ -146,18 +160,17 @@ canvas { display: block; }
   70%       { transform: rotate(-4deg) scale(.96); }
 }
 
-.card-text { display: flex; flex-direction: column; gap: 3px; }
-
 .card-title {
-  font-size: clamp(26px, 7vw, 38px);
+  font-size: clamp(22px, 5.5vw, 30px);
   color: #fff;
   text-shadow: 0 2px 6px rgba(0,0,0,.15);
   line-height: 1;
 }
 
 .card-desc {
-  font-size: clamp(13px, 3.5vw, 17px);
+  font-size: clamp(11px, 2.8vw, 14px);
   color: rgba(255,255,255,.82);
+  line-height: 1.2;
 }
 
 /* ─── HUD ─────────────────────────────────────────────────────────────────── */
@@ -299,3 +312,54 @@ canvas { display: block; }
 }
 
 .reveal-hint.gone { opacity: 0; }
+
+/* ─── GROW GAME ────────────────────────────────────────────────────────────── */
+
+#screen-grow {
+  background: radial-gradient(ellipse at 50% 50%, #4a0080 0%, #150030 100%);
+}
+
+#canvas-grow {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+/* ─── RAIN GAME ────────────────────────────────────────────────────────────── */
+
+#screen-rain {
+  background: linear-gradient(180deg, #87ceeb 0%, #4aac6b 100%);
+}
+
+#canvas-rain {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+/* ─── STICKERS GAME ────────────────────────────────────────────────────────── */
+
+#screen-stickers { background: #fff; }
+
+#canvas-stickers {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+.stickers-hint {
+  position: fixed;
+  bottom: max(36px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.7);
+  font-size: 20px;
+  letter-spacing: 1px;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 1s ease;
+  white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(0,0,0,.3);
+}
+
+.stickers-hint.gone { opacity: 0; }

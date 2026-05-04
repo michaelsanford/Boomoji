@@ -1,6 +1,9 @@
-let popGame    = null;
-let revealGame = null;
-let current    = 'menu';
+let popGame      = null;
+let revealGame   = null;
+let growGame     = null;
+let rainGame     = null;
+let stickersGame = null;
+let current      = 'menu';
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -19,7 +22,7 @@ function startGame(name) {
       );
     }
     popGame.start();
-  } else {
+  } else if (name === 'reveal') {
     showScreen('reveal');
     if (!revealGame) {
       revealGame = new RevealGame(
@@ -28,19 +31,47 @@ function startGame(name) {
       );
     }
     revealGame.start();
+  } else if (name === 'grow') {
+    showScreen('grow');
+    if (!growGame) growGame = new GrowGame(document.getElementById('canvas-grow'));
+    growGame.start();
+  } else if (name === 'rain') {
+    showScreen('rain');
+    if (!rainGame) rainGame = new RainGame(document.getElementById('canvas-rain'));
+    rainGame.start();
+  } else if (name === 'stickers') {
+    showScreen('stickers');
+    if (!stickersGame) {
+      stickersGame = new StickersGame(
+        document.getElementById('canvas-stickers'),
+        document.getElementById('stickers-badge'),
+        document.getElementById('stickers-overlay'),
+        document.getElementById('stickers-hint'),
+      );
+    }
+    stickersGame.start();
   }
 }
 
 function goHome() {
   if (current === 'pop'    && popGame)    popGame.stop();
   if (current === 'reveal' && revealGame) revealGame.stop();
+  if (current === 'grow'     && growGame)     growGame.stop();
+  if (current === 'rain'     && rainGame)     rainGame.stop();
+  if (current === 'stickers' && stickersGame) stickersGame.stop();
   showScreen('menu');
 }
 
-document.getElementById('btn-pop').addEventListener('click',    () => startGame('pop'));
-document.getElementById('btn-reveal').addEventListener('click', () => startGame('reveal'));
-document.getElementById('pop-back').addEventListener('click',    goHome);
-document.getElementById('reveal-back').addEventListener('click', goHome);
+document.getElementById('btn-pop').addEventListener('click',      () => startGame('pop'));
+document.getElementById('btn-reveal').addEventListener('click',   () => startGame('reveal'));
+document.getElementById('btn-grow').addEventListener('click',     () => startGame('grow'));
+document.getElementById('btn-rain').addEventListener('click',     () => startGame('rain'));
+document.getElementById('btn-stickers').addEventListener('click', () => startGame('stickers'));
+document.getElementById('pop-back').addEventListener('click',      goHome);
+document.getElementById('reveal-back').addEventListener('click',   goHome);
+document.getElementById('grow-back').addEventListener('click',     goHome);
+document.getElementById('rain-back').addEventListener('click',     goHome);
+document.getElementById('stickers-back').addEventListener('click', goHome);
 
 /* request full-screen on first tap (works on Android Chrome) */
 document.addEventListener('click', function _fs() {

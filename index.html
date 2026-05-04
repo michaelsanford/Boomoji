@@ -54,17 +54,28 @@
       <div class="menu-cards">
         <button class="game-card pop-card" id="btn-pop">
           <div class="card-emoji">🎈</div>
-          <div class="card-text">
-            <div class="card-title">Pop!</div>
-            <div class="card-desc">Tap the bouncing emojis!</div>
-          </div>
+          <div class="card-title">Pop!</div>
+          <div class="card-desc">Tap the bouncing emojis!</div>
         </button>
         <button class="game-card reveal-card" id="btn-reveal">
           <div class="card-emoji">✨</div>
-          <div class="card-text">
-            <div class="card-title">Reveal!</div>
-            <div class="card-desc">Touch to discover emojis!</div>
-          </div>
+          <div class="card-title">Reveal!</div>
+          <div class="card-desc">Touch to discover emojis!</div>
+        </button>
+        <button class="game-card grow-card" id="btn-grow">
+          <div class="card-emoji">💜</div>
+          <div class="card-title">Grow!</div>
+          <div class="card-desc">Hold to inflate... BOOM!</div>
+        </button>
+        <button class="game-card rain-card" id="btn-rain">
+          <div class="card-emoji">🌧️</div>
+          <div class="card-title">Rain!</div>
+          <div class="card-desc">Tap the falling emojis!</div>
+        </button>
+        <button class="game-card stickers-card" id="btn-stickers">
+          <div class="card-emoji">🎨</div>
+          <div class="card-title">Stickers!</div>
+          <div class="card-desc">Decorate every scene!</div>
         </button>
       </div>
     </div>
@@ -95,10 +106,46 @@
     <div class="reveal-hint" id="reveal-hint">Tap anywhere! ✨</div>
   </div>
 
+  <!-- ═══════════════ GROW GAME ═══════════════ -->
+  <div id="screen-grow" class="screen">
+    <canvas id="canvas-grow"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="grow-back">🏠</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ RAIN GAME ═══════════════ -->
+  <div id="screen-rain" class="screen">
+    <canvas id="canvas-rain"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="rain-back">🏠</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════ STICKERS GAME ═══════════════ -->
+  <div id="screen-stickers" class="screen">
+    <canvas id="canvas-stickers"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="stickers-back">🏠</button>
+      <div class="round-badge" id="stickers-badge">🐾 Animals</div>
+    </div>
+    <div class="stickers-hint" id="stickers-hint">Tap to place stickers! ✨</div>
+    <div class="round-overlay" id="stickers-overlay">
+      <div class="overlay-inner">
+        <div class="overlay-emoji"></div>
+        <div class="overlay-msg"></div>
+        <div class="overlay-sub"></div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/sounds.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/pop-game.js"></script>
   <script src="js/reveal-game.js"></script>
+  <script src="js/grow-game.js"></script>
+  <script src="js/rain-game.js"></script>
+  <script src="js/stickers-game.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -85,5 +85,40 @@ const Sounds = (() => {
     } catch (_) {}
   }
 
-  return { pop, sparkle, fanfare, softPop };
+  function grow(freq) {
+    try {
+      const ac = getCtx();
+      const t = ac.currentTime;
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.connect(gain);
+      gain.connect(ac.destination);
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.1, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+      osc.start(t);
+      osc.stop(t + 0.08);
+    } catch (_) {}
+  }
+
+  function boom() {
+    try {
+      const ac = getCtx();
+      const t = ac.currentTime;
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.connect(gain);
+      gain.connect(ac.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(160, t);
+      osc.frequency.exponentialRampToValueAtTime(28, t + 0.55);
+      gain.gain.setValueAtTime(0.75, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+      osc.start(t);
+      osc.stop(t + 0.57);
+    } catch (_) {}
+  }
+
+  return { pop, sparkle, fanfare, softPop, grow, boom };
 })();
