@@ -1,4 +1,4 @@
-const CACHE = 'boomoji-v4';
+const CACHE = 'boomoji-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const ASSETS = [
   './js/grow-game.js',
   './js/rain-game.js',
   './js/stickers-game.js',
+  './js/memory-game.js',
   './manifest.json',
   './icons/icon.svg',
 ];

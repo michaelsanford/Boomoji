@@ -3,6 +3,7 @@ let revealGame   = null;
 let growGame     = null;
 let rainGame     = null;
 let stickersGame = null;
+let memoryGame   = null;
 let current      = 'menu';
 
 function showScreen(id) {
@@ -52,6 +53,16 @@ function startGame(name) {
       );
     }
     stickersGame.start();
+  } else if (name === 'memory') {
+    showScreen('memory');
+    if (!memoryGame) {
+      memoryGame = new MemoryGame(
+        document.getElementById('canvas-memory'),
+        document.getElementById('memory-badge'),
+        document.getElementById('memory-win-overlay'),
+      );
+    }
+    memoryGame.start();
   }
 }
 
@@ -61,6 +72,7 @@ function goHome() {
   if (current === 'grow'     && growGame)     growGame.stop();
   if (current === 'rain'     && rainGame)     rainGame.stop();
   if (current === 'stickers' && stickersGame) stickersGame.stop();
+  if (current === 'memory'   && memoryGame)   memoryGame.stop();
   showScreen('menu');
 }
 
@@ -69,11 +81,13 @@ document.getElementById('btn-reveal').addEventListener('click',   () => startGam
 document.getElementById('btn-grow').addEventListener('click',     () => startGame('grow'));
 document.getElementById('btn-rain').addEventListener('click',     () => startGame('rain'));
 document.getElementById('btn-stickers').addEventListener('click', () => startGame('stickers'));
+document.getElementById('btn-memory').addEventListener('click',   () => startGame('memory'));
 document.getElementById('pop-back').addEventListener('click',      goHome);
 document.getElementById('reveal-back').addEventListener('click',   goHome);
 document.getElementById('grow-back').addEventListener('click',     goHome);
 document.getElementById('rain-back').addEventListener('click',     goHome);
 document.getElementById('stickers-back').addEventListener('click', goHome);
+document.getElementById('memory-back').addEventListener('click',   goHome);
 
 /* request full-screen on first tap (works on Android Chrome) */
 document.addEventListener('click', function _fs() {

@@ -26,6 +26,10 @@ Emojis fall from the sky. Tap them before they splat on the ground! The longer y
 
 Tap the canvas to place emoji stickers on themed scenes — Animals, Ocean, Yummy, Space, Garden. Fill up 15 stickers to complete a theme and unlock the next one.
 
+### 🧩 Memory
+
+Sixteen face-down tiles hide 8 pairs of matching emojis — all random every game. Tap two tiles to flip them; find the match to keep them revealed. Find all 8 pairs to win!
+
 ## Dev
 
 **Requirements:** Node.js (for `npx`)
@@ -51,12 +55,12 @@ The SVG icon (`icons/icon.svg`) is tracked and sufficient for Android PWA instal
 
 The service worker (`sw.js`) uses a **cache-first** strategy: every request is served from the cache; only cache misses hit the network. All JS, CSS, HTML, the manifest, and `icons/icon.svg` are precached on install. The three PNG icons are cached opportunistically — a missing file won't abort installation.
 
-**Deploying an update:** bump the `CACHE` constant in `sw.js` (currently `boomoji-v4`). On next load the new SW installs, old cache versions are purged on activate, and the page reloads automatically to serve fresh assets.
+**Deploying an update:** bump the `CACHE` constant in `sw.js` (currently `boomoji-v5`). On next load the new SW installs, old cache versions are purged on activate, and the page reloads automatically to serve fresh assets.
 
 ## Project structure
 
 ```text
-index.html          — menu screen + five game screens
+index.html          — menu screen + six game screens
 style.css           — animated gradient menu, game backgrounds, overlays
 manifest.json       — PWA manifest (portrait, standalone)
 sw.js               — service worker (cache-first, versioned cache)
@@ -69,6 +73,7 @@ js/
   grow-game.js      — hold-to-inflate, spring physics, explosion
   rain-game.js      — falling emojis, gravity, splat animation
   stickers-game.js  — themed canvas backgrounds, sticker placement, progression
+  memory-game.js    — 4×4 flip grid, pair matching, bounce/glow animations
 icons/
   icon.svg          — source icon (tracked)
   generate.html     — open in browser to generate PNG icons

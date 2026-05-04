@@ -77,6 +77,11 @@
           <div class="card-title">Stickers!</div>
           <div class="card-desc">Decorate every scene!</div>
         </button>
+        <button class="game-card memory-card" id="btn-memory">
+          <div class="card-emoji">🧩</div>
+          <div class="card-title">Memory!</div>
+          <div class="card-desc">Find the matching pairs!</div>
+        </button>
       </div>
     </div>
   </div>
@@ -139,6 +144,22 @@
     </div>
   </div>
 
+  <!-- ═══════════════ MEMORY GAME ═══════════════ -->
+  <div id="screen-memory" class="screen">
+    <canvas id="canvas-memory"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="memory-back">🏠</button>
+      <div class="round-badge" id="memory-badge">Find the pairs!</div>
+    </div>
+    <div id="memory-win-overlay" class="memory-win-overlay">
+      <div class="overlay-inner" id="memory-overlay-inner">
+        <div class="overlay-emoji" id="memory-overlay-emoji">🎉</div>
+        <div class="overlay-msg"   id="memory-overlay-msg">You did it!</div>
+        <button class="memory-replay-btn" id="memory-replay-btn">Play Again!</button>
+      </div>
+    </div>
+  </div>
+
   <div id="update-toast">✨ Updated!</div>
 
   <script src="js/sounds.js"></script>
@@ -148,6 +169,7 @@
   <script src="js/grow-game.js"></script>
   <script src="js/rain-game.js"></script>
   <script src="js/stickers-game.js"></script>
+  <script src="js/memory-game.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

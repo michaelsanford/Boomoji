@@ -142,6 +142,7 @@ canvas { display: block; }
 .grow-card     { background: linear-gradient(135deg, #9b59b6 0%, #e91e8c 100%); }
 .rain-card     { background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 100%); }
 .stickers-card { background: linear-gradient(135deg, #f9c74f 0%, #f8961e 100%); }
+.memory-card   { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
 
 .card-emoji {
   font-size: 46px;
@@ -153,6 +154,7 @@ canvas { display: block; }
 .grow-card     .card-emoji { animation-delay: -3s;   }
 .rain-card     .card-emoji { animation-delay: -4.5s; }
 .stickers-card .card-emoji { animation-delay: -0.7s; }
+.memory-card   .card-emoji { animation-delay: -2.2s; }
 
 @keyframes cardWiggle {
   0%, 100% { transform: rotate(-6deg) scale(1); }
@@ -363,6 +365,61 @@ canvas { display: block; }
 }
 
 .stickers-hint.gone { opacity: 0; }
+
+/* ─── MEMORY GAME ─────────────────────────────────────────────────────────── */
+
+#screen-memory {
+  background: linear-gradient(150deg, #fce4ec 0%, #e8eaf6 100%);
+}
+
+#canvas-memory {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+.memory-win-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.memory-win-overlay.visible {
+  opacity: 1;
+  background: rgba(255,255,255,.4);
+}
+
+.memory-win-overlay.visible .overlay-inner {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.memory-replay-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 14px 44px;
+  border: none;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: clamp(20px, 5.5vw, 26px);
+  color: #fff;
+  background: linear-gradient(135deg, #ff6b9d, #c77dff);
+  box-shadow: 0 6px 0 rgba(179,107,255,.45);
+  cursor: pointer;
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+
+.memory-replay-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(179,107,255,.45);
+}
 
 /* ─── UPDATE TOAST ────────────────────────────────────────────────────────── */
 
