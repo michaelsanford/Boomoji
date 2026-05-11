@@ -30,6 +30,14 @@ Tap the canvas to place emoji stickers on themed scenes — Animals, Ocean, Yumm
 
 Sixteen face-down tiles hide 8 pairs of matching emojis — all random every game. Tap two tiles to flip them; find the match to keep them revealed. Find all 8 pairs to win!
 
+### 🔴 Connect
+
+Two players take turns dropping their emoji piece into a 6×7 grid. The active player is shown large, glowing, and bouncing at the top — no reading required. Drop 4 in a row (across, down, or diagonally) to win! Coloured triangles above each column show where to tap.
+
+### 👀 Spot
+
+A target emoji is displayed at the top. The screen fills with bouncing emojis — a mix of the target and distractors. Find and tap every copy of the target emoji to win. Each round uses a new target and gradually adds more distractors.
+
 ## Localisation
 
 Boomoji supports four languages:
@@ -64,7 +72,7 @@ The service worker (`sw.js`) uses a **cache-first** strategy: every request is s
 ## Project structure
 
 ```text
-index.html          — menu screen + six game screens
+index.html          — menu screen + eight game screens
 style.css           — animated gradient menu, game backgrounds, overlays
 manifest.json       — PWA manifest (portrait, standalone)
 sw.js               — service worker (cache-first, versioned cache)
@@ -78,6 +86,8 @@ js/
   rain-game.js      — falling emojis, gravity, splat animation
   stickers-game.js  — themed canvas backgrounds, sticker placement, progression
   memory-game.js    — 4×4 flip grid, pair matching, bounce/glow animations
+  connect-game.js   — two-player emoji Connect-4, falling pieces, 4-in-a-row win detection
+  spot-game.js      — target zone display, bouncing emojis, visual search
 icons/
   icon.svg          — source icon (tracked)
   generate.html     — open in browser to generate PNG icons

@@ -82,6 +82,16 @@
           <div class="card-title" data-i18n="game.memory.title">Memory!</div>
           <div class="card-desc"  data-i18n="game.memory.desc">Find the matching pairs!</div>
         </button>
+        <button class="game-card connect-card" id="btn-connect">
+          <div class="card-emoji">🔴</div>
+          <div class="card-title" data-i18n="game.connect.title">Connect!</div>
+          <div class="card-desc"  data-i18n="game.connect.desc">Drop 4 in a row to win!</div>
+        </button>
+        <button class="game-card spot-card" id="btn-spot">
+          <div class="card-emoji">👀</div>
+          <div class="card-title" data-i18n="game.spot.title">Spot!</div>
+          <div class="card-desc"  data-i18n="game.spot.desc">Find all the matching ones!</div>
+        </button>
       </div>
     </div>
     <div class="menu-footer">
@@ -164,6 +174,38 @@
     </div>
   </div>
 
+  <!-- ═══════════════ CONNECT GAME ═══════════════ -->
+  <div id="screen-connect" class="screen">
+    <canvas id="canvas-connect"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="connect-back">🏠</button>
+      <div class="round-badge" id="connect-badge">🔴 Turn!</div>
+    </div>
+    <div id="connect-win-overlay" class="memory-win-overlay">
+      <div class="overlay-inner">
+        <div class="overlay-emoji" id="connect-overlay-emoji">🎉</div>
+        <div class="overlay-msg"   id="connect-overlay-msg">Wins!</div>
+        <button class="memory-replay-btn connect-replay-btn" id="connect-replay-btn" data-i18n="connect.replay">Play Again!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SPOT GAME ═══════════════ -->
+  <div id="screen-spot" class="screen">
+    <canvas id="canvas-spot"></canvas>
+    <div class="hud">
+      <button class="back-btn" id="spot-back">🏠</button>
+      <div class="round-badge" id="spot-badge">Find them all!</div>
+    </div>
+    <div id="spot-win-overlay" class="memory-win-overlay">
+      <div class="overlay-inner">
+        <div class="overlay-emoji" id="spot-overlay-emoji">🎉</div>
+        <div class="overlay-msg"   id="spot-overlay-msg">You found them!</div>
+        <button class="memory-replay-btn spot-replay-btn" id="spot-replay-btn" data-i18n="spot.replay">Next Round!</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ═══════════════ PRIVACY POLICY ═══════════════ -->
   <div id="screen-privacy" class="screen">
     <div class="privacy-header">
@@ -215,6 +257,8 @@
   <script src="js/rain-game.js"></script>
   <script src="js/stickers-game.js"></script>
   <script src="js/memory-game.js"></script>
+  <script src="js/connect-game.js"></script>
+  <script src="js/spot-game.js"></script>
   <script src="js/parent-gate.js"></script>
   <script src="js/app.js"></script>
 </body>

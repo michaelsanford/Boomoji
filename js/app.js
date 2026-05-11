@@ -4,6 +4,8 @@ let growGame     = null;
 let rainGame     = null;
 let stickersGame = null;
 let memoryGame   = null;
+let connectGame  = null;
+let spotGame     = null;
 let current      = 'menu';
 
 function showScreen(id) {
@@ -63,6 +65,26 @@ function startGame(name) {
       );
     }
     memoryGame.start();
+  } else if (name === 'connect') {
+    showScreen('connect');
+    if (!connectGame) {
+      connectGame = new ConnectGame(
+        document.getElementById('canvas-connect'),
+        document.getElementById('connect-badge'),
+        document.getElementById('connect-win-overlay'),
+      );
+    }
+    connectGame.start();
+  } else if (name === 'spot') {
+    showScreen('spot');
+    if (!spotGame) {
+      spotGame = new SpotGame(
+        document.getElementById('canvas-spot'),
+        document.getElementById('spot-badge'),
+        document.getElementById('spot-win-overlay'),
+      );
+    }
+    spotGame.start();
   }
 }
 
@@ -73,6 +95,8 @@ function goHome() {
   if (current === 'rain'     && rainGame)     rainGame.stop();
   if (current === 'stickers' && stickersGame) stickersGame.stop();
   if (current === 'memory'   && memoryGame)   memoryGame.stop();
+  if (current === 'connect'  && connectGame)  connectGame.stop();
+  if (current === 'spot'     && spotGame)     spotGame.stop();
   showScreen('menu');
 }
 
@@ -90,12 +114,16 @@ document.getElementById('btn-grow').addEventListener('click',     () => startGam
 document.getElementById('btn-rain').addEventListener('click',     () => startGame('rain'));
 document.getElementById('btn-stickers').addEventListener('click', () => startGame('stickers'));
 document.getElementById('btn-memory').addEventListener('click',   () => startGame('memory'));
+document.getElementById('btn-connect').addEventListener('click',   () => startGame('connect'));
+document.getElementById('btn-spot').addEventListener('click',     () => startGame('spot'));
 document.getElementById('pop-back').addEventListener('click',      goHome);
 document.getElementById('reveal-back').addEventListener('click',   goHome);
 document.getElementById('grow-back').addEventListener('click',     goHome);
 document.getElementById('rain-back').addEventListener('click',     goHome);
 document.getElementById('stickers-back').addEventListener('click', goHome);
 document.getElementById('memory-back').addEventListener('click',   goHome);
+document.getElementById('connect-back').addEventListener('click',   goHome);
+document.getElementById('spot-back').addEventListener('click',     goHome);
 
 /* request full-screen on first tap (works on Android Chrome) */
 document.addEventListener('click', function _fs() {

@@ -35,6 +35,9 @@ canvas { display: block; }
   background: linear-gradient(135deg, #ff6b9d, #c77dff, #4ecdc4, #ffd93d);
   background-size: 400% 400%;
   animation: menuGradient 10s ease infinite;
+  align-items: flex-start;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes menuGradient {
@@ -74,9 +77,10 @@ canvas { display: block; }
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 24px 20px;
+  padding: 24px 20px max(80px, calc(env(safe-area-inset-bottom) + 60px));
   width: 100%;
   max-width: 480px;
+  margin: 0 auto;
 }
 
 .menu-title {
@@ -143,6 +147,8 @@ canvas { display: block; }
 .rain-card     { background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 100%); }
 .stickers-card { background: linear-gradient(135deg, #f9c74f 0%, #f8961e 100%); }
 .memory-card   { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+.connect-card  { background: linear-gradient(135deg, #f12711 0%, #f5af19 100%); }
+.spot-card     { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
 
 .card-emoji {
   font-size: 46px;
@@ -155,6 +161,8 @@ canvas { display: block; }
 .rain-card     .card-emoji { animation-delay: -4.5s; }
 .stickers-card .card-emoji { animation-delay: -0.7s; }
 .memory-card   .card-emoji { animation-delay: -2.2s; }
+.connect-card  .card-emoji { animation-delay: -1.1s; }
+.spot-card     .card-emoji { animation-delay: -3.8s; }
 
 @keyframes cardWiggle {
   0%, 100% { transform: rotate(-6deg) scale(1); }
@@ -796,6 +804,30 @@ canvas { display: block; }
   cursor: pointer;
   font-family: inherit;
   margin-top: 2px;
+}
+
+/* ─── CONNECT GAME ─────────────────────────────────────────────────────────── */
+
+#screen-connect {
+  background: linear-gradient(150deg, #0a0a2e 0%, #1a1a5e 100%);
+}
+
+#canvas-connect {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+/* ─── SPOT GAME ───────────────────────────────────────────────────────────── */
+
+#screen-spot {
+  background: linear-gradient(150deg, #fff8e1 0%, #ffebc2 100%);
+}
+
+#canvas-spot {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
 }
 
 /* ─── UPDATE TOAST ────────────────────────────────────────────────────────── */
