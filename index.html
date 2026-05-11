@@ -95,8 +95,16 @@
       </div>
     </div>
     <div class="menu-footer">
+      <div class="timer-row">
+        <span class="timer-label" data-i18n="timer.label">⏱ Nap time:</span>
+        <button class="timer-btn" data-duration="0"  data-i18n="timer.off">Off</button>
+        <button class="timer-btn" data-duration="15" data-i18n="timer.15m">15m</button>
+        <button class="timer-btn" data-duration="30" data-i18n="timer.30m">30m</button>
+        <button class="timer-btn" data-duration="60" data-i18n="timer.1h">1h</button>
+      </div>
       <button class="menu-lang-btn" id="lang-btn" data-i18n="menu.language">🌐 Language</button>
       <button class="menu-privacy-link" id="privacy-link" data-i18n="menu.privacy">Privacy Policy</button>
+      <span class="menu-dedication">Made with 💖 by Michael for આર્ય</span>
     </div>
   </div>
 
@@ -246,6 +254,41 @@
     </div>
   </div>
 
+  <!-- ═══════════════ SLEEP OVERLAY ═══════════════ -->
+  <div id="sleep-overlay" class="sleep-overlay">
+    <canvas id="canvas-sleep"></canvas>
+  </div>
+
+  <!-- ═══════════════ TIMER PARENT GATE ═══════════════ -->
+  <div id="timer-gate-overlay" class="parent-gate-overlay">
+    <div class="parent-gate-card">
+      <div class="gate-icon">🔐</div>
+      <h2 class="gate-heading" data-i18n="gate.heading">For Parents &amp; Guardians</h2>
+      <p class="gate-desc" data-i18n="gate.desc">Solve this to continue:</p>
+      <p class="gate-question" id="timer-gate-question">7 + 8 = ?</p>
+      <input type="number" class="gate-input" id="timer-gate-input" inputmode="numeric" pattern="[0-9]*" placeholder="?" autocomplete="off">
+      <div class="gate-buttons">
+        <button class="gate-btn gate-cancel" id="timer-gate-cancel" data-i18n="gate.cancel">Cancel</button>
+        <button class="gate-btn gate-confirm" id="timer-gate-confirm" data-i18n="gate.confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLEEP PARENT GATE ═══════════════ -->
+  <div id="sleep-gate-overlay" class="parent-gate-overlay">
+    <div class="parent-gate-card">
+      <div class="gate-icon">🔐</div>
+      <h2 class="gate-heading" data-i18n="gate.heading">For Parents &amp; Guardians</h2>
+      <p class="gate-desc" data-i18n="gate.desc">Solve this to continue:</p>
+      <p class="gate-question" id="sleep-gate-question">7 + 8 = ?</p>
+      <input type="number" class="gate-input" id="sleep-gate-input" inputmode="numeric" pattern="[0-9]*" placeholder="?" autocomplete="off">
+      <div class="gate-buttons">
+        <button class="gate-btn gate-cancel" id="sleep-gate-cancel" data-i18n="gate.cancel">Cancel</button>
+        <button class="gate-btn gate-confirm" id="sleep-gate-confirm" data-i18n="gate.confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
   <div id="update-toast" data-i18n="update.toast">✨ Updated!</div>
 
   <script src="js/i18n.js"></script>
@@ -260,6 +303,7 @@
   <script src="js/connect-game.js"></script>
   <script src="js/spot-game.js"></script>
   <script src="js/parent-gate.js"></script>
+  <script src="js/sleep-timer.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

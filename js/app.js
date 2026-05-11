@@ -17,6 +17,7 @@ function showScreen(id) {
 }
 
 function startGame(name) {
+  sleepTimer.startSession();
   if (name === 'pop') {
     showScreen('pop');
     if (!popGame) {
@@ -104,6 +105,25 @@ const gate = new ParentGate(
   document.getElementById('parent-gate-overlay'),
   () => showScreen('privacy'),
 );
+
+const sleepTimer = new SleepTimer(
+  document.getElementById('sleep-overlay'),
+  document.getElementById('canvas-sleep'),
+  document.getElementById('sleep-gate-overlay'),
+);
+
+let _pendingTimerLimit = 0;
+const timerGate = new ParentGate(
+  document.getElementById('timer-gate-overlay'),
+  () => sleepTimer.setLimit(_pendingTimerLimit),
+);
+
+document.querySelectorAll('.timer-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    _pendingTimerLimit = Number(btn.dataset.duration);
+    timerGate.show();
+  });
+});
 
 document.getElementById('privacy-link').addEventListener('click', () => gate.show());
 document.getElementById('privacy-back').addEventListener('click', goHome);

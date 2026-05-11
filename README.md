@@ -53,6 +53,14 @@ The display language is auto-detected from `navigator.language` on first launch.
 
 All strings — game titles, descriptions, celebration messages, badge text, and the full Privacy Policy — are translated. Translations live in `js/i18n.js`.
 
+## Parental controls
+
+A row of buttons in the menu footer lets a parent set a play-time limit: **Off**, **15 min**, **30 min**, or **1 hr**. Changing the setting requires solving an arithmetic challenge so children can't adjust it themselves.
+
+Once the limit is reached the screen fades to an animated night scene — sleeping animals with drifting Zzz's — covering the entire display. No game interaction is possible and the home button is not accessible. To resume play a parent must tap the screen and solve the gate again; this clears the timer so the child gets a fresh session.
+
+The same arithmetic gate also guards the Privacy Policy link in the menu footer.
+
 ## PWA icons
 
 The PNG icons aren't tracked in git. To generate them:
@@ -75,8 +83,9 @@ The service worker (`sw.js`) uses a **cache-first** strategy: every request is s
 index.html          — menu screen + eight game screens
 style.css           — animated gradient menu, game backgrounds, overlays
 manifest.json       — PWA manifest (portrait, standalone)
-sw.js               — service worker (cache-first, versioned cache)
+sw.js               — service worker (cache-first, offline support)
 js/
+  i18n.js           — internationalisation; 4 locales (en, fr, gu, zh); t() helper
   app.js            — screen routing, fullscreen request, SW registration
   sounds.js         — Web Audio API synth: pop, sparkle, grow, boom, fanfare
   particles.js      — Particle class, spawnBurst(), shuffle(); shared EMOJIS[]
@@ -88,6 +97,8 @@ js/
   memory-game.js    — 4×4 flip grid, pair matching, bounce/glow animations
   connect-game.js   — two-player emoji Connect-4, falling pieces, 4-in-a-row win detection
   spot-game.js      — target zone display, bouncing emojis, visual search
+  parent-gate.js    — arithmetic challenge overlay for parent-only actions
+  sleep-timer.js    — parental play-time limiter; animated sleep overlay on expiry
 icons/
   icon.svg          — source icon (tracked)
   generate.html     — open in browser to generate PNG icons

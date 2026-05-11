@@ -441,6 +441,15 @@ canvas { display: block; }
   pointer-events: none;
 }
 
+.menu-dedication {
+  display: block;
+  color: rgba(255,255,255,.28);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  padding: 2px 0 6px;
+}
+
 .menu-privacy-link {
   background: none;
   border: none;
@@ -855,4 +864,72 @@ canvas { display: block; }
 #update-toast.visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* ─── SLEEP TIMER BUTTONS ─────────────────────────────────────────────────── */
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  pointer-events: all;
+  flex-wrap: wrap;
+}
+
+.timer-label {
+  font-family: 'Fredoka One', inherit;
+  font-size: 13px;
+  color: rgba(255,255,255,.38);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.timer-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.20);
+  border-radius: 20px;
+  color: rgba(255,255,255,0.45);
+  font-family: 'Fredoka One', inherit;
+  font-size: 13px;
+  padding: 5px 13px;
+  cursor: pointer;
+  pointer-events: all;
+  min-width: 40px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+.timer-btn:active { transform: scale(0.92); }
+
+.timer-btn.active {
+  background: rgba(255,255,255,0.30);
+  border-color: rgba(255,255,255,0.60);
+  color: rgba(255,255,255,0.95);
+}
+
+/* ─── SLEEP OVERLAY ────────────────────────────────────────────────────────── */
+
+.sleep-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease;
+}
+
+.sleep-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#canvas-sleep {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+#sleep-gate-overlay {
+  z-index: 9100;
 }

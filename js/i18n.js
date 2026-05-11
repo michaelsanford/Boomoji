@@ -80,6 +80,15 @@ const TRANSLATIONS = {
     'gate.cancel':  'Cancel',
     'gate.confirm': 'Confirm',
 
+    'timer.label': '⏱ Nap time:',
+    'timer.off':   'Off',
+    'timer.15m':   '15m',
+    'timer.30m':   '30m',
+    'timer.1h':    '1h',
+
+    'sleep.message': 'Time to rest! 💤',
+    'sleep.hint':    'Parents: tap to unlock',
+
     'update.toast': '✨ Updated!',
 
     'lang.picker.title': 'Choose language',
@@ -267,6 +276,15 @@ const TRANSLATIONS = {
     'gate.desc':    'Résous ceci pour continuer :',
     'gate.cancel':  'Annuler',
     'gate.confirm': 'Confirmer',
+
+    'timer.label': '⏱ Durée :',
+    'timer.off':   'Off',
+    'timer.15m':   '15m',
+    'timer.30m':   '30m',
+    'timer.1h':    '1h',
+
+    'sleep.message': 'Temps de repos ! 💤',
+    'sleep.hint':    'Parents : touchez pour déverrouiller',
 
     'update.toast': '✨ Mis à jour !',
 
@@ -456,6 +474,15 @@ const TRANSLATIONS = {
     'gate.cancel':  'રદ કરો',
     'gate.confirm': 'ખાતરી કરો',
 
+    'timer.label': '⏱ રમત સમય:',
+    'timer.off':   'બંધ',
+    'timer.15m':   '15મ',
+    'timer.30m':   '30મ',
+    'timer.1h':    '1ક',
+
+    'sleep.message': 'આરામ નો સમય! 💤',
+    'sleep.hint':    'માતા-પિતા: ખોલવા ટૅપ કરો',
+
     'update.toast': '✨ અપડેટ થઈ ગયું!',
 
     'lang.picker.title': 'ભાષા પસંદ કરો',
@@ -643,6 +670,15 @@ const TRANSLATIONS = {
     'gate.desc':    '解答后继续：',
     'gate.cancel':  '取消',
     'gate.confirm': '确认',
+
+    'timer.label': '⏱ 游戏时长：',
+    'timer.off':   '关',
+    'timer.15m':   '15分',
+    'timer.30m':   '30分',
+    'timer.1h':    '1时',
+
+    'sleep.message': '休息时间到 💤',
+    'sleep.hint':    '家长：点击解锁',
 
     'update.toast': '✨ 已更新！',
 

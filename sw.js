@@ -1,4 +1,4 @@
-const CACHE = 'boomoji-v10';
+const CACHE = 'boomoji-v12';
 const ASSETS = [
   './',
   './index.html',
@@ -15,6 +15,7 @@ const ASSETS = [
   './js/memory-game.js',
   './js/connect-game.js',
   './js/spot-game.js',
+  './js/sleep-timer.js',
   './js/parent-gate.js',
   './manifest.json',
   './icons/icon.svg',
