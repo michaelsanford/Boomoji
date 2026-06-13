@@ -866,46 +866,12 @@ canvas { display: block; }
   transform: translateX(-50%) translateY(0);
 }
 
-/* ─── SLEEP TIMER BUTTONS ─────────────────────────────────────────────────── */
+/* ─── NAP TIMER PICKER ────────────────────────────────────────────────────── */
 
-.timer-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin-bottom: 8px;
-  pointer-events: all;
-  flex-wrap: wrap;
-}
-
-.timer-label {
-  font-family: 'Fredoka One', inherit;
-  font-size: 13px;
-  color: rgba(255,255,255,.38);
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-}
-
-.timer-btn {
-  background: rgba(255,255,255,0.12);
-  border: 1.5px solid rgba(255,255,255,0.20);
-  border-radius: 20px;
-  color: rgba(255,255,255,0.45);
-  font-family: 'Fredoka One', inherit;
-  font-size: 13px;
-  padding: 5px 13px;
-  cursor: pointer;
-  pointer-events: all;
-  min-width: 40px;
-  transition: background .2s, color .2s, border-color .2s;
-}
-
-.timer-btn:active { transform: scale(0.92); }
-
-.timer-btn.active {
-  background: rgba(255,255,255,0.30);
-  border-color: rgba(255,255,255,0.60);
-  color: rgba(255,255,255,0.95);
+.timer-opt.active {
+  background: #f2e9ff;
+  border-color: #c77dff;
+  color: #6a0dad;
 }
 
 /* ─── SLEEP OVERLAY ────────────────────────────────────────────────────────── */

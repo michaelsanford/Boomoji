@@ -12,6 +12,7 @@ const TRANSLATIONS = {
     'menu.subtitle': 'Tap · Play · Discover',
     'menu.privacy':  'Privacy Policy',
     'menu.language': '🌐 Language',
+    'menu.timer':    '⏱ Nap',
 
     'game.pop.title':      'Pop!',
     'game.pop.desc':       'Tap the bouncing emojis!',
@@ -80,8 +81,9 @@ const TRANSLATIONS = {
     'gate.cancel':  'Cancel',
     'gate.confirm': 'Confirm',
 
-    'timer.label': '⏱ Nap time:',
+    'timer.label': '⏱ Nap time',
     'timer.off':   'Off',
+    'timer.5m':    '5m',
     'timer.15m':   '15m',
     'timer.30m':   '30m',
     'timer.1h':    '1h',
@@ -209,6 +211,7 @@ const TRANSLATIONS = {
     'menu.subtitle': 'Touche · Joue · Découvre',
     'menu.privacy':  'Politique de confidentialité',
     'menu.language': '🌐 Langue',
+    'menu.timer':    '⏱ Dodo',
 
     'game.pop.title':      'Éclate !',
     'game.pop.desc':       'Touche les emojis qui rebondissent !',
@@ -277,8 +280,9 @@ const TRANSLATIONS = {
     'gate.cancel':  'Annuler',
     'gate.confirm': 'Confirmer',
 
-    'timer.label': '⏱ Durée :',
+    'timer.label': '⏱ Durée',
     'timer.off':   'Off',
+    'timer.5m':    '5m',
     'timer.15m':   '15m',
     'timer.30m':   '30m',
     'timer.1h':    '1h',
@@ -406,6 +410,7 @@ const TRANSLATIONS = {
     'menu.subtitle': 'ટૅપ · રમ · શોધ',
     'menu.privacy':  'ગોપનીયતા નીતિ',
     'menu.language': '🌐 ભાષા',
+    'menu.timer':    '⏱ ઊંઘ',
 
     'game.pop.title':      'પૉપ!',
     'game.pop.desc':       'ઉછળતા ઇમોજી ટૅપ કરો!',
@@ -474,8 +479,9 @@ const TRANSLATIONS = {
     'gate.cancel':  'રદ કરો',
     'gate.confirm': 'ખાતરી કરો',
 
-    'timer.label': '⏱ રમત સમય:',
+    'timer.label': '⏱ રમત સમય',
     'timer.off':   'બંધ',
+    'timer.5m':    '5મ',
     'timer.15m':   '15મ',
     'timer.30m':   '30મ',
     'timer.1h':    '1ક',
@@ -603,6 +609,7 @@ const TRANSLATIONS = {
     'menu.subtitle': '点击 · 游玩 · 探索',
     'menu.privacy':  '隐私政策',
     'menu.language': '🌐 语言',
+    'menu.timer':    '⏱ 睡眠',
 
     'game.pop.title':      '泡泡！',
     'game.pop.desc':       '点击弹跳的表情！',
@@ -671,8 +678,9 @@ const TRANSLATIONS = {
     'gate.cancel':  '取消',
     'gate.confirm': '确认',
 
-    'timer.label': '⏱ 游戏时长：',
+    'timer.label': '⏱ 游戏时长',
     'timer.off':   '关',
+    'timer.5m':    '5分',
     'timer.15m':   '15分',
     'timer.30m':   '30分',
     'timer.1h':    '1时',

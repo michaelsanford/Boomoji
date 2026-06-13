@@ -96,13 +96,7 @@
       </div>
     </div>
     <div class="menu-footer">
-      <div class="timer-row">
-        <span class="timer-label" data-i18n="timer.label">⏱ Nap time:</span>
-        <button class="timer-btn" data-duration="0"  data-i18n="timer.off">Off</button>
-        <button class="timer-btn" data-duration="15" data-i18n="timer.15m">15m</button>
-        <button class="timer-btn" data-duration="30" data-i18n="timer.30m">30m</button>
-        <button class="timer-btn" data-duration="60" data-i18n="timer.1h">1h</button>
-      </div>
+      <button class="menu-lang-btn" id="timer-btn" data-i18n="menu.timer">⏱ Nap</button>
       <button class="menu-lang-btn" id="lang-btn" data-i18n="menu.language">🌐 Language</button>
       <button class="menu-privacy-link" id="privacy-link" data-i18n="menu.privacy">Privacy Policy</button>
       <span class="menu-dedication">Made with 💖 by Michael for આર્ય</span>
@@ -240,6 +234,19 @@
         <button class="gate-btn gate-cancel" id="gate-cancel" data-i18n="gate.cancel">Cancel</button>
         <button class="gate-btn gate-confirm" id="gate-confirm" data-i18n="gate.confirm">Confirm</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ NAP TIMER PICKER ═══════════════ -->
+  <div id="timer-overlay" class="lang-overlay">
+    <div class="lang-card">
+      <p class="lang-card-title" data-i18n="timer.label">⏱ Nap time</p>
+      <button class="lang-opt timer-opt" data-duration="0"  data-i18n="timer.off">Off</button>
+      <button class="lang-opt timer-opt" data-duration="5"  data-i18n="timer.5m">5m</button>
+      <button class="lang-opt timer-opt" data-duration="15" data-i18n="timer.15m">15m</button>
+      <button class="lang-opt timer-opt" data-duration="30" data-i18n="timer.30m">30m</button>
+      <button class="lang-opt timer-opt" data-duration="60" data-i18n="timer.1h">1h</button>
+      <button class="lang-cancel" id="timer-cancel">✕</button>
     </div>
   </div>
 

@@ -118,9 +118,13 @@ const timerGate = new ParentGate(
   () => sleepTimer.setLimit(_pendingTimerLimit),
 );
 
-document.querySelectorAll('.timer-btn').forEach(btn => {
+const timerOverlay = document.getElementById('timer-overlay');
+document.getElementById('timer-btn').addEventListener('click', () => timerOverlay.classList.add('visible'));
+document.getElementById('timer-cancel').addEventListener('click', () => timerOverlay.classList.remove('visible'));
+timerOverlay.querySelectorAll('.timer-opt').forEach(btn => {
   btn.addEventListener('click', () => {
     _pendingTimerLimit = Number(btn.dataset.duration);
+    timerOverlay.classList.remove('visible');
     timerGate.show();
   });
 });

@@ -52,7 +52,7 @@ class SleepTimer {
 
   _refreshButtons() {
     const cur = parseInt(localStorage.getItem(TIMER_LIMIT_KEY) || '0', 10);
-    document.querySelectorAll('.timer-btn').forEach(btn => {
+    document.querySelectorAll('.timer-opt').forEach(btn => {
       btn.classList.toggle('active', Number(btn.dataset.duration) === cur);
     });
   }
