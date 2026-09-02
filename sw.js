@@ -1,4 +1,4 @@
-const CACHE = 'boomoji-v12';
+const CACHE = 'boomoji-v13';
 const ASSETS = [
   './',
   './index.html',

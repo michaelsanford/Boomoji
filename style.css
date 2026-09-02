@@ -77,7 +77,7 @@ canvas { display: block; }
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 24px 20px max(80px, calc(env(safe-area-inset-bottom) + 60px));
+  padding: 24px 20px max(150px, calc(env(safe-area-inset-bottom) + 130px));
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
@@ -436,30 +436,62 @@ canvas { display: block; }
   bottom: max(12px, env(safe-area-inset-bottom));
   left: 0;
   right: 0;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
   z-index: 2;
   pointer-events: none;
 }
 
 .menu-dedication {
-  display: block;
-  color: rgba(255,255,255,.28);
+  flex: 1 0 100%;
+  text-align: center;
+  color: rgba(255,255,255,.5);
   font-family: inherit;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.3px;
-  padding: 2px 0 6px;
+  padding: 4px 0 2px;
+}
+
+/* Footer pills — big enough for small fingers and tired parent eyes */
+.menu-lang-btn,
+.menu-privacy-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  background: rgba(255,255,255,.22);
+  border: 2px solid rgba(255,255,255,.45);
+  border-radius: 50px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 22px;
+  pointer-events: all;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  box-shadow: 0 3px 0 rgba(0,0,0,.14);
+  transition: transform .1s ease, box-shadow .1s ease, background .15s ease;
+}
+
+.menu-lang-btn:active,
+.menu-privacy-link:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(0,0,0,.14);
+  background: rgba(255,255,255,.34);
 }
 
 .menu-privacy-link {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,.38);
-  font-family: inherit;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 8px 20px;
-  pointer-events: all;
-  letter-spacing: 0.5px;
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.3);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
 }
 
 /* ─── PARENT GATE ─────────────────────────────────────────────────────────── */
@@ -717,20 +749,6 @@ canvas { display: block; }
   color: #9b59b6;
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-/* ─── MENU FOOTER LANGUAGE BUTTON ────────────────────────────────────────── */
-
-.menu-lang-btn {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,.38);
-  font-family: inherit;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 8px 20px;
-  pointer-events: all;
-  letter-spacing: 0.5px;
 }
 
 /* ─── LANGUAGE PICKER OVERLAY ─────────────────────────────────────────────── */
